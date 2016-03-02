@@ -58,7 +58,6 @@ static const CGFloat DefaultScreenWidth = 320.f;
 }
 
 -(void)dealloc{
-    
     [self.scrollView removeObserver:self forKeyPath:@"contentOffset"];
 }
 
@@ -70,9 +69,7 @@ static const CGFloat DefaultScreenWidth = 320.f;
 }
 
 -(void)awakeFromNib{
-    
     [super awakeFromNib];
-    
     CGFloat leadingRatio = [UIScreen mainScreen].bounds.size.width / DefaultScreenWidth;
     [self.skyLeadingConstraint setConstant:self.skyLeadingConstraint.constant * leadingRatio];
     [self.skyTrailingConstraint setConstant:self.skyTrailingConstraint.constant * leadingRatio];

@@ -10,23 +10,73 @@
 #import "User.h"
 
 @interface AppDelegate ()
-
+@property (strong, nonatomic) UIManagedDocument *managedDocument;
 @end
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:23/255.0 green:180/255.0 blue:237/255.0 alpha:1]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:255/255.0 green:106/255.0 blue:106/255.0 alpha:1]];
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [self createManagedObjectContext];
     [self changeViewController];
     return YES;
 }
 
+- (void)createManagedObjectContext {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *directoryUrl = [self applicationDocumentsDirectory];
+    directoryUrl = [directoryUrl URLByAppendingPathComponent:@"LibraryDB"];
+    [fileManager createDirectoryAtPath:[directoryUrl path] withIntermediateDirectories:YES attributes:nil error:nil];
+    self.managedDocument = [[UIManagedDocument alloc] initWithFileURL:directoryUrl];
+    directoryUrl = [directoryUrl URLByAppendingPathComponent:@"StoreContent"];
+    
+    if (![fileManager fileExistsAtPath:[directoryUrl path]]) {
+        [fileManager createDirectoryAtPath:[directoryUrl path] withIntermediateDirectories:YES attributes:nil error:nil];
+        [fileManager copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"persistentStore" ofType:nil]
+                             toPath:[[directoryUrl URLByAppendingPathComponent:@"persistentStore"] path]
+                              error:nil];
+        [fileManager copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"persistentStore-shm" ofType:nil]
+                             toPath:[[directoryUrl URLByAppendingPathComponent:@"persistentStore-shm"] path]
+                              error:nil];
+        [fileManager copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"persistentStore-wal" ofType:nil]
+                             toPath:[[directoryUrl URLByAppendingPathComponent:@"persistentStore-wal"] path]
+                              error:nil];
+    }
+    
+    if ([fileManager fileExistsAtPath:[directoryUrl path]]) {
+        [self.managedDocument openWithCompletionHandler:^(BOOL success) {
+            if(success) {
+                [self managedOnjectContextIsReady];
+            }
+        }];
+    } else {
+        [self.managedDocument saveToURL:directoryUrl forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+            if(success) {
+                [self managedOnjectContextIsReady];
+            }
+        }];
+    }
+}
+
+- (void)managedOnjectContextIsReady {
+    if (self.managedDocument.documentState == UIDocumentStateNormal) {
+        self.librarySeatContext = self.managedDocument.managedObjectContext;
+        NSDictionary *userInfo = self.librarySeatContext ? @{ LibrarySeatDatabaseAvailabilityContext : self.librarySeatContext } : nil;
+        [[NSNotificationCenter defaultCenter] postNotificationName:LibrarySeatDatabaseAvailabilityNotification
+                                                            object:self
+                                                          userInfo:userInfo];
+    }
+}
+
+- (NSURL *)applicationDocumentsDirectory {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
 - (void)changeViewController {
-    NSData *data = [[NSUserDefaults standardUserDefaults] valueForKey:USERNAME];
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"USERNAME"];
     
     NSString *controllId = data ? @"TabBar" : @"Login";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -34,15 +84,14 @@
     
     if (!data) {
 //        ((UINavigationController *)self.window.rootViewController).navigationBarHidden = YES;
-        self.window.rootViewController = controller;
 //        [self.window.rootViewController presentViewController:controller animated:YES completion:nil];
+        self.window.rootViewController = controller;
     } else {
-        User *user = [User sharedUser];
-        [user setUser:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+        User *user = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        [[User sharedUser] setUser:user];
         self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:controller];
 //        [(UINavigationController *) self.window.rootViewController pushViewController:controller animated:YES];
     }
-    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

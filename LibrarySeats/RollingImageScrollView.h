@@ -9,10 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @protocol RollingImageScrollViewDelegate <NSObject>
-@required
-//当滑动图片结束时调用
-- (void)rollDidEndDecelerating;
 @optional
+- (void)rollDidEndDecelerating; //当滑动图片结束时调用
 - (void)tapImageView:(NSInteger)imageIndex;
 @end
 

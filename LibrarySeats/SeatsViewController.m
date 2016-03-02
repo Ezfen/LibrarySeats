@@ -6,23 +6,24 @@
 //  Copyright © 2015年 阿澤. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "SeatsViewController.h"
 #import "SeatTableViewCell.h"
 #import "SeatTableHeaderView.h"
 #import "DetailViewController.h"
 #import "NetworkHandler.h"
+#import "PQFCustomLoaders/PQFBouncingBalls.h"
 #import "Venue.h"
 #import "Library.h"
-#import "YALSunnyRefreshControl.h"
 #import "LibrarySeatsTabBarController.h"
-#import "PQFCustomLoaders/PQFCustomLoaders.h"
 
 @interface SeatsViewController () <UITableViewDataSource,UITableViewDelegate,NetworkHandlerDelegate>
 @property (strong, nonatomic) UITableView *tableView;
-
-@property (strong, nonatomic) NetworkHandler *networkHandler;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedRequestController;
+@property (strong, nonatomic) Venue *venue;
 @property (strong, nonatomic) Library *library;
-@property (nonatomic,strong) YALSunnyRefreshControl *sunnyRefreshControl;
+@property (strong, nonatomic) NetworkHandler *networkHandler;
 @property (nonatomic, strong) PQFBouncingBalls *bouncingBalls;
 @end
 
@@ -32,9 +33,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self layoutUI];
+    self.view.backgroundColor = [UIColor colorWithRed:1 green:1 blue:240.0/255 alpha:1];
+    [self.view addSubview:self.tableView];
+    self.managedObjectContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).librarySeatContext;
+    if (!self.managedObjectContext) {
+        [[NSNotificationCenter defaultCenter] addObserverForName:LibrarySeatDatabaseAvailabilityNotification
+                                                          object:nil
+                                                           queue:nil
+                                                      usingBlock:^(NSNotification * _Nonnull note) {
+                                                          self.managedObjectContext = note.userInfo[LibrarySeatDatabaseAvailabilityContext];
+                                                      }];
+
+    }
     [self.bouncingBalls show];
-    [self venueInfoByLibraryName:@"本部图书馆"];
+//    [self getVenueSituation];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -44,20 +56,7 @@
     ((LibrarySeatsTabBarController *)self.parentViewController).tipMessage = @"点击进入各个场馆，可快速查看心仪位置的锁定情况，并不代表座位使用情况喔~";
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - setter & getter
-- (YALSunnyRefreshControl *)sunnyRefreshControl {
-    if (!_sunnyRefreshControl) {
-        _sunnyRefreshControl = [YALSunnyRefreshControl new];
-        [_sunnyRefreshControl addTarget:self action:@selector(sunnyControlDidStartAnimation) forControlEvents:UIControlEventValueChanged];
-    }
-    return _sunnyRefreshControl;
-}
-
 - (PQFBouncingBalls *)bouncingBalls {
     if (!_bouncingBalls) {
         _bouncingBalls = [[PQFBouncingBalls alloc] initLoaderOnView:self.view];
@@ -66,25 +65,33 @@
     return _bouncingBalls;
 }
 
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+    _managedObjectContext = managedObjectContext;
+    if (_managedObjectContext) {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Venue"];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"floor" ascending:YES];
+        fetchRequest.sortDescriptors = @[sortDescriptor];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"libraryID == %d",1];
+        [fetchRequest setPredicate:predicate];
+        self.fetchedRequestController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:_managedObjectContext sectionNameKeyPath:@"floor" cacheName:@"VenueCache"];
+        NSError *error;
+        [self.fetchedRequestController performFetch:&error];
+        if (!error) {
+            [self.bouncingBalls remove];
+            [self.tableView reloadData];
+        }
+    }
+}
+
+- (NSString *)requestURL {
+    return @"/venue/venueinfo.action";
+}
+
 - (Library *)library {
     if (!_library) {
         _library = [Library sharedLibrary];
     }
     return _library;
-}
-
-- (UITableView *)tableView {
-    if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 100)
-                                                  style:UITableViewStyleGrouped];
-        _tableView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:240.0/255 alpha:1];
-        _tableView.separatorStyle = NO;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        [self.view addSubview:_tableView];
-    }
-    return _tableView;
 }
 
 - (NetworkHandler *)networkHandler {
@@ -95,30 +102,26 @@
     return _networkHandler;
 }
 
-- (NSString *)requestURL {
-    return @"/venue/venueinfo.action";
-}
-
-#pragma mark - OtherFunction
-- (void)layoutUI {
-    self.view.backgroundColor = [UIColor colorWithRed:1 green:1 blue:240.0/255 alpha:1];
-    [self.sunnyRefreshControl attachToScrollView:self.tableView];
-}
-
-
--(void)sunnyControlDidStartAnimation{
-    // start loading something
-    [self venueInfoByLibraryName:@"本部图书馆"];
-    [self.tableView reloadData];
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 113)
+                                                  style:UITableViewStyleGrouped];
+        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.separatorStyle = NO;
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+    }
+    return _tableView;
 }
 
 #pragma mark - tableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.library.venues.count;
+    return [[self.fetchedRequestController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.library.venues[section].count;
+    return [[[self.fetchedRequestController sections] objectAtIndex:section] numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -127,9 +130,8 @@
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([SeatTableViewCell class]) owner:nil options:nil] lastObject];
     }
-    NSMutableArray *floor = self.library.venues[indexPath.section];
-    Venue *venue = floor[indexPath.row];
-    cell.venueName = venue.venueName;
+    Venue *venue = [self.fetchedRequestController objectAtIndexPath:indexPath];
+    cell.venueName = venue.name;
     cell.location = [venue.floor stringByAppendingString:venue.direction];
     cell.openTime = venue.openTime;
     cell.index = (indexPath.section + indexPath.row) % 5;
@@ -138,7 +140,6 @@
 }
 
 #pragma mark - tableViewDelegate
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 216;
 }
@@ -183,20 +184,20 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Venue *venue = self.library.venues[indexPath.section][indexPath.row];
+    Venue *venue = [self.fetchedRequestController objectAtIndexPath:indexPath];
     if (venue.totalSeatNum != 0) {
         DetailViewController *detail = [[DetailViewController alloc] init];
-        detail.total = venue.totalSeatNum;
-        detail.venueID = venue.ID;
+        detail.total = [venue.totalSeatNum intValue];
+        detail.venueID = [venue.iD intValue];
         detail.category = YES;
-        detail.title = venue.venueName;
+        detail.title = venue.name;
         [self.navigationController pushViewController:detail animated:YES];
     }
 }
 
 #pragma mark - network
-- (void)venueInfoByLibraryName:(NSString *)libraryName {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@?libraryName=%@",WEBSITE, [self requestURL], libraryName];
+- (void)getVenueSituation {
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@?libraryName=本部图书馆",WEBSITE, [self requestURL]];
     urlStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [NSURL URLWithString:urlStr];
     [self.networkHandler responseMessageFromURL:url];
@@ -205,41 +206,31 @@
 #pragma mark - networkHandlerDelegate
 - (void)requestSuccess:(NSDictionary *)responseMessage {
     if ([responseMessage[@"response"] isEqualToString:@"success"]) {
-        [self.library cleanData];
-        NSArray *array = responseMessage[@"datas"];
-        [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSDictionary *dic = (NSDictionary *)obj;
-            Venue *venue = [Venue new];
-            venue.ID = [dic[@"intID"] intValue];
-            venue.libraryID = [dic[@"intLibraryID"] intValue];
-            venue.totalSeatNum = [dic[@"intTotalSeatNum"] intValue];
-            venue.usedSeatNum = [dic[@"intUsedSeatNum"] intValue];
-            venue.bookedSeatNum = [dic[@"intBookedSeatNum"] intValue];
-            venue.venueName = dic[@"vcVenueName"];
-            venue.floor = dic[@"vcFloor"];
-            venue.openTime = dic[@"vcOpenTime"];
-            venue.seatDistribution = dic[@"vcSeatDistribution"];
-            venue.direction = dic[@"vcDirection"];
-            [self.library classifyVenueByFloor:venue];
-        }];
-        [self.tableView reloadData];
-    } else {
-        NSString *describe = responseMessage[@"describe"];
-        [self showAlertView:describe];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Venue"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"libraryID == %d",1];
+        [fetchRequest setPredicate:predicate];
+        NSError *error = nil;
+        NSArray<Venue *> *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        NSArray *datas = responseMessage[@"datas"];
+        if (!error && array.count > 0) {
+            [datas enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSDictionary *dic = (NSDictionary *)obj;
+                for (int i = 0; i < array.count; ++i) {
+                    Venue *venue = array[i];
+                    if ([venue.iD intValue] == [dic[@"intID"] intValue]) {
+                        venue.bookedSeatNum = @([dic[@"intBookedSeatNum"] intValue]);
+                        break;
+                    }
+                }
+            }];
+        }
+        [self.library addVenues:[NSSet setWithArray:array]];
     }
-    [self.bouncingBalls remove];
-    [self.sunnyRefreshControl endRefreshing];
 }
 
 - (void)requestError:(NSError *)error {
-    [self.bouncingBalls remove];
-    [self.sunnyRefreshControl endRefreshing];
-    [self showAlertView:@"网络拥挤，请稍后再试"];
+    
 }
 
-- (void)showAlertView:(NSString *)message {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alertView show];
-}
 
 @end

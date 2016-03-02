@@ -80,8 +80,8 @@
     for (int i = 0; i < array.count; ++i) {
         Venue *venue = array[i];
         CGRect rect = CGRectMake(RowOrigin->x, RowOrigin->y, screenWidth / 2.0, screenWidth / 2.0);
-        SeatsProgressView *view = [[SeatsProgressView alloc] initWithFrame:rect andTotal:venue.totalSeatNum andCount:venue.bookedSeatNum];
-        view.title = venue.venueName;
+        SeatsProgressView *view = [[SeatsProgressView alloc] initWithFrame:rect andTotal:[venue.totalSeatNum intValue] andCount:[venue.bookedSeatNum intValue]];
+        view.title = venue.name;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSeatsView:)];
         [self.tapGestures addObject:tap];
         [view addGestureRecognizer:tap];

@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.viewControllers = @[[self ViewControlWithTabBarItemTitle:@"座位"
                                                      andItemImage:[UIImage imageNamed:@"main_home"]
                                                     selectedImage:[UIImage imageNamed:@"main_homeh"]],

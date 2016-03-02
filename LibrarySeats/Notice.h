@@ -1,5 +1,5 @@
 //
-//  Venue.h
+//  Notice.h
 //  LibrarySeats
 //
 //  Created by 阿澤🍀 on 16/2/26.
@@ -9,11 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Library, Seat;
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Venue : NSManagedObject
+@interface Notice : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -21,4 +19,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "Venue+CoreDataProperties.h"
+#import "Notice+CoreDataProperties.h"

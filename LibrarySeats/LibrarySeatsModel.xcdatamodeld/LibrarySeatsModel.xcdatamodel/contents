@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
+    <entity name="Library" representedClassName="Library" syncable="YES">
+        <attribute name="iD" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="libraryAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="libraryName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="venues" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Venue" inverseName="library" inverseEntity="Venue" syncable="YES"/>
+    </entity>
+    <entity name="Notice" representedClassName="Notice" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iD" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Seat" representedClassName="Seat" syncable="YES">
+        <attribute name="deadLineTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iD" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="isBooked" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="seatNum" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="venueID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="venue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Venue" inverseName="seats" inverseEntity="Venue" syncable="YES"/>
+    </entity>
+    <entity name="Venue" representedClassName="Venue" syncable="YES">
+        <attribute name="bookedSeatNum" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="direction" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="floor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iD" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="libraryID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="openTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalSeatNum" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="library" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Library" inverseName="venues" inverseEntity="Library" syncable="YES"/>
+        <relationship name="seats" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Seat" inverseName="venue" inverseEntity="Seat" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Library" positionX="-3960" positionY="-279" width="128" height="103"/>
+        <element name="Notice" positionX="-3888" positionY="-441" width="128" height="103"/>
+        <element name="Seat" positionX="-3521" positionY="-304" width="128" height="148"/>
+        <element name="Venue" positionX="-3735" positionY="-333" width="128" height="193"/>
+    </elements>
+</model>

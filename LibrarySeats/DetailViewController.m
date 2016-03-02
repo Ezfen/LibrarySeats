@@ -111,12 +111,11 @@
             NSDictionary *dic = (NSDictionary *)obj;
             //"deadLineTime":"2016-01-12 01:47:03","dtLastUpdate":"2016-01-12T01:17:03","intBooked":0,"intID":16,"intSeatNum":1,"intUserID":1,"intUsing":0,"intVenueID":1
             Seat *seat = [Seat new];
-            seat.ID = [dic[@"intID"] intValue];
-            seat.userID = [dic[@"intUserID"] intValue];
-            seat.venueID = [dic[@"intVenueID"] intValue];
-            seat.seatNum = [dic[@"intSeatNum"] intValue];
-            seat.used = [dic[@"intUsing"] intValue] == 1 ? YES : NO;
-            seat.booked = [dic[@"intBooked"] intValue] == 1 ? YES : NO;
+            seat.iD = @([dic[@"intID"] intValue]);
+            seat.userID = @([dic[@"intUserID"] intValue]);
+            seat.venueID = @([dic[@"intVenueID"] intValue]);
+            seat.seatNum = @([dic[@"intSeatNum"] intValue]);
+            seat.isBooked = [dic[@"intBooked"] intValue] == 1 ? @(YES) : @(NO);
             seat.deadLineTime = dic[@"deadLineTime"];
             [self.seats addObject:seat];
             [self addSeatToMap:seat];
@@ -142,7 +141,7 @@
 
 
 - (void)addSeatToMap:(Seat *)seat {
-    if (seat.booked) {
+    if ([seat.isBooked boolValue]) {
         [self.map appendString:@"U"];
     } else {
         if (self.category) [self.map appendString:@"D"];
@@ -166,7 +165,7 @@
 - (void)seatSelected:(ZSeat *)seat {
     int selectedNum = (seat.row - 1) * 8 + seat.column;
     Seat *selectedSeat = self.seats[selectedNum - 1];
-    ((BookingViewController *)self.sourceViewController).selectedSeatID = selectedSeat.ID;
+    ((BookingViewController *)self.sourceViewController).selectedSeatID = [selectedSeat.iD integerValue];
     NSString *str = [NSString stringWithFormat:@"你将预约%@的第%i号座位",self.title,selectedNum];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"选择座位" message:str delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
     [alertView show];

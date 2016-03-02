@@ -27,8 +27,9 @@
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStyleGrouped];
-        _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 63, self.view.frame.size.width, self.view.frame.size.height - 49)
+                                                  style:UITableViewStyleGrouped];
+        _tableView.backgroundColor = [UIColor clearColor];
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -71,13 +72,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-//    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-//    self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.view.backgroundColor = [UIColor colorWithRed:1 green:1 blue:240.0/255 alpha:1];
     [self setTitle:@"我的"];
     _menuNameArray = @[@"设置"];
     _menuImageArray = @[@"setting"];
-    [self seatInfo];
     [self.view addSubview:self.tableView];
+    [self.sunnyRefreshControl attachToScrollView:self.tableView];
+    [self seatInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,11 +91,6 @@
     ((LibrarySeatsTabBarController *)self.parentViewController).showTipMessageButton = NO;
     self.parentViewController.title = @"我的";
     [self.tableView reloadData];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    //[self.sunnyRefreshControl attachToScrollView:self.tableView];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -178,7 +174,9 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return nil;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+    return view;
+    
 }
 
 #pragma mark - network
@@ -203,8 +201,8 @@
         [self.tableView reloadData];
     } else {
         self.user.selectedVenue = @"暂无";
-        self.user.selecetdSeat = 0;
-        self.user.deadLineTime = nil;
+        self.user.selecetdSeat = nil;
+        self.user.deadLineTime = @"";
     }
     [self.sunnyRefreshControl endRefreshing];
 }

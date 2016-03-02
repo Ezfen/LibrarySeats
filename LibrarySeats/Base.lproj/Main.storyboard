@@ -152,7 +152,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.1450980392" green="0.66274509800000003" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="mRD-kS-Irt"/>
@@ -167,14 +167,14 @@
                                     <action selector="textFieldDoneEditing:" destination="H98-s7-c4j" eventType="editingDidEndOnExit" id="sgC-PT-N3O"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bJz-Hd-vZa">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bJz-Hd-vZa">
                                 <rect key="frame" x="68" y="20" width="248" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="oEM-oe-xG6"/>
                                 </constraints>
                                 <color key="textColor" red="0.1450980392" green="0.66274509800000003" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="oEM-oe-xG6"/>
@@ -195,7 +195,7 @@
                                     <constraint firstAttribute="height" constant="38" id="M6n-Nt-KbP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" red="0.1450980392" green="0.66274509800000003" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.14509803921568626" green="0.66274509803921566" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -237,15 +237,15 @@
                             <constraint firstItem="lDx-U1-S4q" firstAttribute="leading" secondItem="WPV-LJ-T9J" secondAttribute="leadingMargin" constant="30" id="Ht9-c9-dKG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aOd-Cf-UII" secondAttribute="trailing" constant="28" id="NMM-jA-5Lf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="05P-y5-kEk" secondAttribute="trailing" constant="28" id="PxV-Vp-e9K"/>
-                            <constraint firstItem="UJT-sG-bKb" firstAttribute="top" secondItem="pbr-RL-c5T" secondAttribute="bottom" constant="36" id="TDx-76-tuN"/>
                             <constraint firstItem="UJT-sG-bKb" firstAttribute="leading" secondItem="WPV-LJ-T9J" secondAttribute="leadingMargin" constant="30" id="Tex-DO-Cct"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mLf-9Q-7n9" secondAttribute="trailing" constant="28" id="X3S-dy-6CH"/>
+                            <constraint firstItem="fgR-Rb-RO9" firstAttribute="centerY" secondItem="WPV-LJ-T9J" secondAttribute="centerY" id="XA5-Hn-r3U"/>
+                            <constraint firstItem="fgR-Rb-RO9" firstAttribute="top" secondItem="aOd-Cf-UII" secondAttribute="bottom" constant="72" id="XUk-S7-Pai"/>
                             <constraint firstItem="9tN-Bb-9FH" firstAttribute="leading" secondItem="WPV-LJ-T9J" secondAttribute="leadingMargin" constant="28" id="aFt-VW-pL4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9tN-Bb-9FH" secondAttribute="trailing" constant="28" id="aI9-Vp-FrV"/>
                             <constraint firstItem="9sD-Gs-ynJ" firstAttribute="top" secondItem="fgR-Rb-RO9" secondAttribute="bottom" constant="9" id="c87-Bl-Da7"/>
                             <constraint firstItem="9vY-5W-zHr" firstAttribute="leading" secondItem="WPV-LJ-T9J" secondAttribute="leadingMargin" constant="28" id="cbM-LN-br8"/>
                             <constraint firstItem="05P-y5-kEk" firstAttribute="top" secondItem="9vY-5W-zHr" secondAttribute="bottom" constant="30" id="cnM-JH-8de"/>
-                            <constraint firstItem="aOd-Cf-UII" firstAttribute="top" secondItem="pbr-RL-c5T" secondAttribute="bottom" constant="93" id="dwJ-gX-PgQ"/>
                             <constraint firstItem="9vY-5W-zHr" firstAttribute="top" secondItem="9tN-Bb-9FH" secondAttribute="bottom" constant="64" id="efi-XO-MD4"/>
                             <constraint firstItem="bJz-Hd-vZa" firstAttribute="leading" secondItem="lDx-U1-S4q" secondAttribute="trailing" constant="10" id="eiG-lC-sCa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fgR-Rb-RO9" secondAttribute="trailing" constant="28" id="fFN-Ql-8Ny"/>
@@ -253,8 +253,8 @@
                             <constraint firstItem="mLf-9Q-7n9" firstAttribute="leading" secondItem="9sD-Gs-ynJ" secondAttribute="trailing" constant="8" id="jxL-6t-2Qq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9vY-5W-zHr" secondAttribute="trailing" constant="28" id="kVc-Oj-PM7"/>
                             <constraint firstItem="fgR-Rb-RO9" firstAttribute="leading" secondItem="WPV-LJ-T9J" secondAttribute="leadingMargin" constant="28" id="oHu-KK-Qzc"/>
+                            <constraint firstItem="aOd-Cf-UII" firstAttribute="top" secondItem="UJT-sG-bKb" secondAttribute="bottom" constant="19" id="pW9-VW-Wl4"/>
                             <constraint firstItem="9tN-Bb-9FH" firstAttribute="top" secondItem="fgR-Rb-RO9" secondAttribute="bottom" constant="65" id="s3S-s6-HWM"/>
-                            <constraint firstItem="fgR-Rb-RO9" firstAttribute="top" secondItem="pbr-RL-c5T" secondAttribute="bottom" constant="206" id="syz-IB-Dcf"/>
                             <constraint firstItem="bJz-Hd-vZa" firstAttribute="top" secondItem="9tN-Bb-9FH" secondAttribute="bottom" constant="8" id="uum-lH-jap"/>
                             <constraint firstItem="9sD-Gs-ynJ" firstAttribute="leading" secondItem="WPV-LJ-T9J" secondAttribute="leadingMargin" constant="28" id="yRX-7x-aop"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bJz-Hd-vZa" secondAttribute="trailing" constant="28" id="yiE-Dk-JHR"/>
@@ -277,11 +277,10 @@
                                 <exclude reference="PxV-Vp-e9K"/>
                                 <exclude reference="cnM-JH-8de"/>
                                 <exclude reference="4G0-2h-R4M"/>
-                                <exclude reference="TDx-76-tuN"/>
                                 <exclude reference="Tex-DO-Cct"/>
                                 <exclude reference="4MX-02-5k5"/>
                                 <exclude reference="NMM-jA-5Lf"/>
-                                <exclude reference="dwJ-gX-PgQ"/>
+                                <exclude reference="pW9-VW-Wl4"/>
                                 <exclude reference="c87-Bl-Da7"/>
                                 <exclude reference="yRX-7x-aop"/>
                                 <exclude reference="CuN-H4-oSG"/>
@@ -298,9 +297,10 @@
                                 <exclude reference="cbM-LN-br8"/>
                                 <exclude reference="efi-XO-MD4"/>
                                 <exclude reference="kVc-Oj-PM7"/>
+                                <exclude reference="XA5-Hn-r3U"/>
+                                <exclude reference="XUk-S7-Pai"/>
                                 <exclude reference="fFN-Ql-8Ny"/>
                                 <exclude reference="oHu-KK-Qzc"/>
-                                <exclude reference="syz-IB-Dcf"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -321,11 +321,10 @@
                                 <include reference="PxV-Vp-e9K"/>
                                 <include reference="cnM-JH-8de"/>
                                 <include reference="4G0-2h-R4M"/>
-                                <include reference="TDx-76-tuN"/>
                                 <include reference="Tex-DO-Cct"/>
                                 <include reference="4MX-02-5k5"/>
                                 <include reference="NMM-jA-5Lf"/>
-                                <include reference="dwJ-gX-PgQ"/>
+                                <include reference="pW9-VW-Wl4"/>
                                 <include reference="c87-Bl-Da7"/>
                                 <include reference="yRX-7x-aop"/>
                                 <include reference="CuN-H4-oSG"/>
@@ -342,9 +341,10 @@
                                 <include reference="cbM-LN-br8"/>
                                 <include reference="efi-XO-MD4"/>
                                 <include reference="kVc-Oj-PM7"/>
+                                <include reference="XA5-Hn-r3U"/>
+                                <include reference="XUk-S7-Pai"/>
                                 <include reference="fFN-Ql-8Ny"/>
                                 <include reference="oHu-KK-Qzc"/>
-                                <include reference="syz-IB-Dcf"/>
                             </mask>
                         </variation>
                     </view>

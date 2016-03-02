@@ -28,8 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.view.backgroundColor = [UIColor colorWithRed:1 green:1 blue:240.0/255 alpha:1];
     [self setTitle:@"设置"];
 }
 
@@ -61,7 +60,6 @@
     }
     cell.textLabel.text = _menuNameArray[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:_menuImageArray[indexPath.row]];
-    
     return cell;
 }
 

@@ -146,17 +146,17 @@
 - (void)customBookingView:(CustomBookingView *)view chooseVenueAtIndex:(NSInteger)index {
     NSArray<Venue *> *array = [self.library allVenues];
     Venue *venue = array[index];
-    self.bookVenueID = venue.ID;
+    self.bookVenueID = [venue.iD intValue];
     if ([view.titleLabel.text isEqualToString:@"快速占座"]) {
-        NSString *alertStr = [NSString stringWithFormat:@"你将预约%@",venue.venueName];
+        NSString *alertStr = [NSString stringWithFormat:@"你将预约%@",venue.name];
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:alertStr delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
         [alertView show];
     } else {
         DetailViewController *detail = [[DetailViewController alloc] init];
-        detail.total = venue.totalSeatNum;
-        detail.venueID = venue.ID;
+        detail.total = [venue.totalSeatNum intValue];
+        detail.venueID = [venue.iD intValue];
         detail.category = NO;
-        detail.title = venue.venueName;
+        detail.title = venue.name;
         detail.sourceViewController = self;
         [self.navigationController pushViewController:detail animated:YES];
     }

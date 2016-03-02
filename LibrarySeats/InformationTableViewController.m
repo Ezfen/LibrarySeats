@@ -31,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:@"个人资讯"];
+    self.view.backgroundColor = [UIColor colorWithRed:1 green:1 blue:240.0/255 alpha:1];
     self.tableView.showsVerticalScrollIndicator = NO;
 }
 
@@ -40,7 +41,6 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }
@@ -77,4 +77,27 @@
     } else return 44;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 40;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 100, 30)];
+    label.textColor = [UIColor colorWithRed:255/255.0 green:106/255.0 blue:106/255.0 alpha:1];
+    [view addSubview:label];
+    switch (section) {
+        case 0:
+            label.text = @"个人信息";
+            break;
+        default:
+            label.text = @"专业信息";
+            break;
+    }
+    return view;
+}
 @end

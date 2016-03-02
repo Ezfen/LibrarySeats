@@ -2,20 +2,23 @@
 //  Seat.h
 //  LibrarySeats
 //
-//  Created by 阿澤🍀 on 16/1/12.
+//  Created by 阿澤🍀 on 16/2/26.
 //  Copyright © 2016年 阿澤. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Seat : NSObject
+@class Venue;
 
-@property (nonatomic) NSInteger ID;
-@property (nonatomic) NSInteger venueID;
-@property (nonatomic) NSInteger seatNum;
-@property (nonatomic) NSInteger userID;
-@property (nonatomic, getter=isUsed) BOOL used;
-@property (nonatomic, getter=isBooked) BOOL booked;
-@property (strong, nonatomic) NSString *deadLineTime;
+NS_ASSUME_NONNULL_BEGIN
+
+@interface Seat : NSManagedObject
+
+// Insert code here to declare functionality of your managed object subclass
 
 @end
+
+NS_ASSUME_NONNULL_END
+
+#import "Seat+CoreDataProperties.h"

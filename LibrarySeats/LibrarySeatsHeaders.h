@@ -16,4 +16,8 @@ extern NSString *const TOKEN;
 extern NSString *const LOGINDATA;
 
 extern NSString *const WEBSITE;
+
+extern NSString *const LibrarySeatDatabaseAvailabilityNotification;
+extern NSString *const LibrarySeatDatabaseAvailabilityContext;
+
 @end

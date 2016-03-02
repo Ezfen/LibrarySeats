@@ -97,7 +97,7 @@
                 <outlet property="venueLocationLabel" destination="wJv-zX-wEW" id="V1y-S8-auC"/>
                 <outlet property="venueNameLabel" destination="smM-U5-8V6" id="rka-le-c6w"/>
             </connections>
-            <point key="canvasLocation" x="725" y="309"/>
+            <point key="canvasLocation" x="451" y="-35"/>
         </tableViewCell>
     </objects>
     <resources>

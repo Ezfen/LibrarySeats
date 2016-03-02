@@ -2,25 +2,26 @@
 //  Library.h
 //  LibrarySeats
 //
-//  Created by 阿澤🍀 on 16/1/11.
+//  Created by 阿澤🍀 on 16/2/26.
 //  Copyright © 2016年 阿澤. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @class Venue;
 
-@interface Library : NSObject
-@property (strong, nonatomic) NSMutableArray<NSMutableArray *> *venues;
-@property (strong, nonatomic) NSMutableArray *firsrFloor;
-@property (strong, nonatomic) NSMutableArray *secondFloor;
-@property (strong, nonatomic) NSMutableArray *thirdFloor;
-@property (strong, nonatomic) NSMutableArray *fourthFloor;
-@property (strong, nonatomic) NSMutableArray *fifthFloor;
+NS_ASSUME_NONNULL_BEGIN
+
+@interface Library : NSManagedObject
+
+// Insert code here to declare functionality of your managed object subclass
 
 + (instancetype)sharedLibrary;
-- (void)classifyVenueByFloor:(Venue *)venue;
-- (void)cleanData;
 - (NSMutableArray *)allVenues;
 
 @end
+
+NS_ASSUME_NONNULL_END
+
+#import "Library+CoreDataProperties.h"

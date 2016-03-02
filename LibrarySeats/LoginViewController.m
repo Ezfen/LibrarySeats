@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UILabel *loginTitle;
 @property (weak, nonatomic) IBOutlet UILabel *loginSubtitle;
-
 @property (strong, nonatomic) User *user;
 @property (strong, nonatomic) NetworkHandler *networkHandler;
 @property (nonatomic, strong) PQFBouncingBalls *bouncingBalls;
@@ -116,6 +115,8 @@
     }
 }
 
+#pragma mark - textFieldDelegate
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     CGFloat offset = self.view.frame.size.height - (textField.frame.origin.y + textField.frame.size.height + 216 + 50);
     if (offset <= 0) {
@@ -153,8 +154,8 @@
         NSArray *array = responseMessage[@"datas"];
         [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSDictionary *dic = (NSDictionary *)obj;
-            self.user.ID = dic[@"intID"];
-            self.user.sex = dic[@"intSex"];
+            self.user.ID = @([dic[@"intID"] intValue]);
+            self.user.sex = ([dic[@"intSex"] intValue] == 1) ? @(YES) : @(NO);
             self.user.academy = dic[@"vcAcademy"];
             self.user.avatorURL = dic[@"vcAvatorUrl"];
             self.user.grade = dic[@"vcGrade"];
@@ -163,8 +164,7 @@
             self.user.number = dic[@"vcNum"];
             self.user.phoneNumber = dic[@"vcPhoneNum"];
             NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.user];
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject:data forKey:USERNAME];
+            [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"USERNAME"];
         }];
         AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
         [appDelegate changeViewController];
