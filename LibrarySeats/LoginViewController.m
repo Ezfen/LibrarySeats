@@ -164,7 +164,7 @@
             self.user.number = dic[@"vcNum"];
             self.user.phoneNumber = dic[@"vcPhoneNum"];
             NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.user];
-            [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"USERNAME"];
+            [[NSUserDefaults standardUserDefaults] setObject:data forKey:USERNAME];
         }];
         AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
         [appDelegate changeViewController];

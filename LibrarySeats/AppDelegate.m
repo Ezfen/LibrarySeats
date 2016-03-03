@@ -76,7 +76,7 @@
 }
 
 - (void)changeViewController {
-    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"USERNAME"];
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:USERNAME];
     
     NSString *controllId = data ? @"TabBar" : @"Login";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
