@@ -21,4 +21,6 @@ NSString *const WEBSITE = @"http://192.168.1.105:8081/library";
 NSString *const LibrarySeatDatabaseAvailabilityNotification = @"LibrarySeatDatabaseAvailabilityNotification";
 NSString *const LibrarySeatDatabaseAvailabilityContext = @"LibrarySeatDatabaseAvailabilityContext";
 
+NSString *const LockOrBookSeatsSuccessNotification = @"LockOrBookSeatsSuccessNotification";
+
 @end

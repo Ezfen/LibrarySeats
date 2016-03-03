@@ -42,7 +42,7 @@
 
 - (NetworkHandler *)networkHandler {
     if (!_networkHandler) {
-        _networkHandler = [NetworkHandler sharedNetworkHandler];
+        _networkHandler = [NetworkHandler new];
         _networkHandler.delegate = self;
     }
     return _networkHandler;

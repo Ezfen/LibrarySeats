@@ -20,4 +20,6 @@ extern NSString *const WEBSITE;
 extern NSString *const LibrarySeatDatabaseAvailabilityNotification;
 extern NSString *const LibrarySeatDatabaseAvailabilityContext;
 
+extern NSString *const LockOrBookSeatsSuccessNotification;
+
 @end

@@ -21,7 +21,6 @@
 @property (nonatomic) id<NetworkHandlerDelegate> delegate;
 @property (strong, nonatomic) AFURLSessionManager *sessionManager;
 
-+ (instancetype)sharedNetworkHandler;
 - (void)responseMessageFromURL:(NSURL *)url;
 
 @end
