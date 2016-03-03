@@ -7,18 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
 
 @class Venue;
 
-NS_ASSUME_NONNULL_BEGIN
+@interface Seat : NSObject
 
-@interface Seat : NSManagedObject
-
-// Insert code here to declare functionality of your managed object subclass
+@property (nonatomic, strong) NSString *deadLineTime;
+@property (nonatomic, strong) NSNumber *iD;
+@property (nonatomic, strong) NSNumber *isBooked;
+@property (nonatomic, strong) NSNumber *seatNum;
+@property (nonatomic, strong) NSNumber *userID;
+@property (nonatomic, strong) NSNumber *venueID;
+@property (nonatomic, strong) Venue *venue;
 
 @end
 
-NS_ASSUME_NONNULL_END
-
-#import "Seat+CoreDataProperties.h"

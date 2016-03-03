@@ -2,7 +2,7 @@
 //  Venue+CoreDataProperties.h
 //  LibrarySeats
 //
-//  Created by 阿澤🍀 on 16/2/26.
+//  Created by 阿澤🍀 on 16/3/3.
 //  Copyright © 2016年 阿澤. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -24,16 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *openTime;
 @property (nullable, nonatomic, retain) NSNumber *totalSeatNum;
 @property (nullable, nonatomic, retain) Library *library;
-@property (nullable, nonatomic, retain) NSSet<Seat *> *seats;
-
-@end
-
-@interface Venue (CoreDataGeneratedAccessors)
-
-- (void)addSeatsObject:(Seat *)value;
-- (void)removeSeatsObject:(Seat *)value;
-- (void)addSeats:(NSSet<Seat *> *)values;
-- (void)removeSeats:(NSSet<Seat *> *)values;
 
 @end
 

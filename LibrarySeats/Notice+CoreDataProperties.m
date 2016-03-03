@@ -2,7 +2,7 @@
 //  Notice+CoreDataProperties.m
 //  LibrarySeats
 //
-//  Created by 阿澤🍀 on 16/3/2.
+//  Created by 阿澤🍀 on 16/3/3.
 //  Copyright © 2016年 阿澤. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu

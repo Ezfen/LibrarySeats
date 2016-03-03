@@ -14,7 +14,7 @@
 #import "Notice.h"
 #import "YALSunnyRefreshControl.h"
 
-@interface NoticesViewController () <RollingImageScrollViewDelegate, UITableViewDataSource, UITableViewDelegate, NetworkHandlerDelegate>
+@interface NoticesViewController () <RollingImageScrollViewDelegate, UITableViewDataSource, UITableViewDelegate, NetworkHandlerDelegate, NSFetchedResultsControllerDelegate>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) RollingImageScrollView *rollingImageView;
 @property (nonatomic,strong) YALSunnyRefreshControl *sunnyRefreshControl;
@@ -36,6 +36,7 @@
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"lastUpdate" ascending:NO];
         self.fetchRequest.sortDescriptors = @[sortDescriptor];
         self.fetchedRequestController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:_managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        self.fetchedRequestController.delegate = self;
         NSError *error;
         [self.fetchedRequestController performFetch:&error];
         if (!error) {
@@ -149,12 +150,16 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
     }
+    [self configureCell:cell atIndexPath:indexPath];
+    return cell;
+}
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Notice *notice = [self.fetchedRequestController objectAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:240.0/255 alpha:1];
     cell.textLabel.text = notice.title;
     cell.detailTextLabel.text = notice.lastUpdate;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    return cell;
 }
 
 #pragma mark - TableViewDelegate
@@ -237,5 +242,64 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alertView show];
 }
+
+
+
+// NSFetchedResultsControllerDelegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
+    [self.tableView beginUpdates];
+}
+
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    UITableView *tableView = self.tableView;
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:[NSArray
+                                               arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray
+                                               arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
+    [self.tableView endUpdates];
+}
+
+
 
 @end

@@ -10,9 +10,6 @@
 		9D315C0587E49B7C38CB0C13 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F4C100E03EF1241931D0EE /* libPods.a */; };
 		E12744A61C1BFA8700698286 /* SeatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12744A51C1BFA8700698286 /* SeatsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E13206311C806344002DE512 /* LibrarySeatsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E132062F1C806344002DE512 /* LibrarySeatsModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
-		E132063E1C806700002DE512 /* Library+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E13206331C806700002DE512 /* Library+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		E13206401C806700002DE512 /* Seat+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E13206371C806700002DE512 /* Seat+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		E13206411C806700002DE512 /* Venue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E13206391C806700002DE512 /* Venue+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		E13206431C806700002DE512 /* Notice.m in Sources */ = {isa = PBXBuildFile; fileRef = E132063D1C806700002DE512 /* Notice.m */; settings = {ASSET_TAGS = (); }; };
 		E132064C1C806764002DE512 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = E13206451C806764002DE512 /* Venue.m */; settings = {ASSET_TAGS = (); }; };
 		E132064D1C806764002DE512 /* Library.m in Sources */ = {isa = PBXBuildFile; fileRef = E13206471C806764002DE512 /* Library.m */; settings = {ASSET_TAGS = (); }; };
@@ -22,13 +19,9 @@
 		E141802B1C21B2BF00195B75 /* imageInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = E141802A1C21B2BF00195B75 /* imageInfo.plist */; settings = {ASSET_TAGS = (); }; };
 		E14180301C21B30E00195B75 /* ZSeat.m in Sources */ = {isa = PBXBuildFile; fileRef = E141802D1C21B30E00195B75 /* ZSeat.m */; settings = {ASSET_TAGS = (); }; };
 		E14180311C21B30E00195B75 /* ZSeatSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = E141802F1C21B30E00195B75 /* ZSeatSelector.m */; settings = {ASSET_TAGS = (); }; };
-		E16279CA1C8734AB00E8101B /* persistentStore-wal in Resources */ = {isa = PBXBuildFile; fileRef = E16279C71C8734AB00E8101B /* persistentStore-wal */; settings = {ASSET_TAGS = (); }; };
-		E16279CB1C8734AB00E8101B /* persistentStore-shm in Resources */ = {isa = PBXBuildFile; fileRef = E16279C81C8734AB00E8101B /* persistentStore-shm */; settings = {ASSET_TAGS = (); }; };
-		E16279CC1C8734AB00E8101B /* persistentStore in Resources */ = {isa = PBXBuildFile; fileRef = E16279C91C8734AB00E8101B /* persistentStore */; settings = {ASSET_TAGS = (); }; };
 		E17574CB1C8166DF0047E843 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E17574CA1C8166DF0047E843 /* User.m */; settings = {ASSET_TAGS = (); }; };
 		E1770ADD1C463DA300DC4594 /* YALSunnyRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1770ADB1C463DA300DC4594 /* YALSunnyRefreshControl.m */; settings = {ASSET_TAGS = (); }; };
 		E1770ADE1C463DA300DC4594 /* YALSunnyRefreshControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1770ADC1C463DA300DC4594 /* YALSunnyRefreshControl.xib */; settings = {ASSET_TAGS = (); }; };
-		E17A17C71C871E5B00478306 /* Notice+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E17A17C61C871E5B00478306 /* Notice+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		E17B74741C43A039005F6F1E /* PQFBouncingBalls.m in Sources */ = {isa = PBXBuildFile; fileRef = E17B746F1C43A039005F6F1E /* PQFBouncingBalls.m */; settings = {ASSET_TAGS = (); }; };
 		E17F134A1C16BF5B00B2D0FB /* RollingImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E17F13491C16BF5B00B2D0FB /* RollingImageScrollView.m */; settings = {ASSET_TAGS = (); }; };
 		E180856E1C466BE4004156DF /* InformationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E180856C1C466BE4004156DF /* InformationTableViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -41,6 +34,12 @@
 		E186E2CB1C426916001FA9A6 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E186E2CA1C426916001FA9A6 /* SettingTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E186E2CF1C42807B001FA9A6 /* TimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E186E2CD1C42807B001FA9A6 /* TimeTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		E186E2D01C42807B001FA9A6 /* TimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E186E2CE1C42807B001FA9A6 /* TimeTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		E18908B21C87EC7700B99325 /* Venue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E18908AD1C87EC7700B99325 /* Venue+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		E18908B31C87EC7700B99325 /* Library+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E18908AF1C87EC7700B99325 /* Library+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		E18908B41C87EC7700B99325 /* Notice+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E18908B11C87EC7700B99325 /* Notice+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		E18908BE1C87F38200B99325 /* persistentStore in Resources */ = {isa = PBXBuildFile; fileRef = E18908BB1C87F38200B99325 /* persistentStore */; settings = {ASSET_TAGS = (); }; };
+		E18908BF1C87F38200B99325 /* persistentStore-wal in Resources */ = {isa = PBXBuildFile; fileRef = E18908BC1C87F38200B99325 /* persistentStore-wal */; settings = {ASSET_TAGS = (); }; };
+		E18908C01C87F38200B99325 /* persistentStore-shm in Resources */ = {isa = PBXBuildFile; fileRef = E18908BD1C87F38200B99325 /* persistentStore-shm */; settings = {ASSET_TAGS = (); }; };
 		E1A6DD311C2A81E200A36E6D /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A6DD2F1C2A81E200A36E6D /* MineViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E1A878891C17CB7300548FC5 /* SignInQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A878881C17CB7300548FC5 /* SignInQRCodeViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E1B5B7AA1C15D59B00CD2981 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B5B7A91C15D59B00CD2981 /* main.m */; };
@@ -92,12 +91,6 @@
 		E12744A41C1BFA8700698286 /* SeatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeatsViewController.h; sourceTree = "<group>"; };
 		E12744A51C1BFA8700698286 /* SeatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeatsViewController.m; sourceTree = "<group>"; };
 		E13206301C806344002DE512 /* LibrarySeatsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LibrarySeatsModel.xcdatamodel; sourceTree = "<group>"; };
-		E13206321C806700002DE512 /* Library+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Library+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E13206331C806700002DE512 /* Library+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Library+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E13206361C806700002DE512 /* Seat+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Seat+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E13206371C806700002DE512 /* Seat+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Seat+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E13206381C806700002DE512 /* Venue+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Venue+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E13206391C806700002DE512 /* Venue+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Venue+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E132063C1C806700002DE512 /* Notice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notice.h; sourceTree = "<group>"; };
 		E132063D1C806700002DE512 /* Notice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notice.m; sourceTree = "<group>"; };
 		E13206441C806764002DE512 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
@@ -115,16 +108,11 @@
 		E141802D1C21B30E00195B75 /* ZSeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSeat.m; sourceTree = "<group>"; };
 		E141802E1C21B30E00195B75 /* ZSeatSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSeatSelector.h; sourceTree = "<group>"; };
 		E141802F1C21B30E00195B75 /* ZSeatSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSeatSelector.m; sourceTree = "<group>"; };
-		E16279C71C8734AB00E8101B /* persistentStore-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "persistentStore-wal"; sourceTree = "<group>"; };
-		E16279C81C8734AB00E8101B /* persistentStore-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "persistentStore-shm"; sourceTree = "<group>"; };
-		E16279C91C8734AB00E8101B /* persistentStore */ = {isa = PBXFileReference; lastKnownFileType = file; path = persistentStore; sourceTree = "<group>"; };
 		E17574C91C8166D40047E843 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		E17574CA1C8166DF0047E843 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		E1770ADA1C463DA300DC4594 /* YALSunnyRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALSunnyRefreshControl.h; sourceTree = "<group>"; };
 		E1770ADB1C463DA300DC4594 /* YALSunnyRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YALSunnyRefreshControl.m; sourceTree = "<group>"; };
 		E1770ADC1C463DA300DC4594 /* YALSunnyRefreshControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YALSunnyRefreshControl.xib; sourceTree = "<group>"; };
-		E17A17C51C871E5B00478306 /* Notice+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Notice+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E17A17C61C871E5B00478306 /* Notice+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Notice+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E17B746E1C43A039005F6F1E /* PQFBouncingBalls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PQFBouncingBalls.h; sourceTree = "<group>"; };
 		E17B746F1C43A039005F6F1E /* PQFBouncingBalls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PQFBouncingBalls.m; sourceTree = "<group>"; };
 		E17B74721C43A039005F6F1E /* PQFCustomLoaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PQFCustomLoaders.h; sourceTree = "<group>"; };
@@ -146,6 +134,15 @@
 		E186E2CC1C42807B001FA9A6 /* TimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTableViewCell.h; sourceTree = "<group>"; };
 		E186E2CD1C42807B001FA9A6 /* TimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTableViewCell.m; sourceTree = "<group>"; };
 		E186E2CE1C42807B001FA9A6 /* TimeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeTableViewCell.xib; sourceTree = "<group>"; };
+		E18908AC1C87EC7700B99325 /* Venue+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Venue+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E18908AD1C87EC7700B99325 /* Venue+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Venue+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E18908AE1C87EC7700B99325 /* Library+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Library+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E18908AF1C87EC7700B99325 /* Library+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Library+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E18908B01C87EC7700B99325 /* Notice+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Notice+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E18908B11C87EC7700B99325 /* Notice+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Notice+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E18908BB1C87F38200B99325 /* persistentStore */ = {isa = PBXFileReference; lastKnownFileType = file; path = persistentStore; sourceTree = "<group>"; };
+		E18908BC1C87F38200B99325 /* persistentStore-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "persistentStore-wal"; sourceTree = "<group>"; };
+		E18908BD1C87F38200B99325 /* persistentStore-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "persistentStore-shm"; sourceTree = "<group>"; };
 		E1A6DD2E1C2A81E200A36E6D /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
 		E1A6DD2F1C2A81E200A36E6D /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		E1A878871C17CB7300548FC5 /* SignInQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInQRCodeViewController.h; sourceTree = "<group>"; };
@@ -243,8 +240,8 @@
 			children = (
 				E13206441C806764002DE512 /* Venue.h */,
 				E13206451C806764002DE512 /* Venue.m */,
-				E13206381C806700002DE512 /* Venue+CoreDataProperties.h */,
-				E13206391C806700002DE512 /* Venue+CoreDataProperties.m */,
+				E18908AC1C87EC7700B99325 /* Venue+CoreDataProperties.h */,
+				E18908AD1C87EC7700B99325 /* Venue+CoreDataProperties.m */,
 			);
 			name = Venue;
 			sourceTree = "<group>";
@@ -252,10 +249,10 @@
 		E13206511C8067C3002DE512 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				E18908AE1C87EC7700B99325 /* Library+CoreDataProperties.h */,
+				E18908AF1C87EC7700B99325 /* Library+CoreDataProperties.m */,
 				E13206461C806764002DE512 /* Library.h */,
 				E13206471C806764002DE512 /* Library.m */,
-				E13206321C806700002DE512 /* Library+CoreDataProperties.h */,
-				E13206331C806700002DE512 /* Library+CoreDataProperties.m */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -265,8 +262,6 @@
 			children = (
 				E13206481C806764002DE512 /* Seat.h */,
 				E13206491C806764002DE512 /* Seat.m */,
-				E13206361C806700002DE512 /* Seat+CoreDataProperties.h */,
-				E13206371C806700002DE512 /* Seat+CoreDataProperties.m */,
 			);
 			name = Seat;
 			sourceTree = "<group>";
@@ -283,8 +278,8 @@
 		E13206541C8067DC002DE512 /* Notice */ = {
 			isa = PBXGroup;
 			children = (
-				E17A17C51C871E5B00478306 /* Notice+CoreDataProperties.h */,
-				E17A17C61C871E5B00478306 /* Notice+CoreDataProperties.m */,
+				E18908B01C87EC7700B99325 /* Notice+CoreDataProperties.h */,
+				E18908B11C87EC7700B99325 /* Notice+CoreDataProperties.m */,
 				E132063C1C806700002DE512 /* Notice.h */,
 				E132063D1C806700002DE512 /* Notice.m */,
 			);
@@ -401,9 +396,9 @@
 		E18D6D601C82055B00C2BBBD /* StoreContent */ = {
 			isa = PBXGroup;
 			children = (
-				E16279C71C8734AB00E8101B /* persistentStore-wal */,
-				E16279C81C8734AB00E8101B /* persistentStore-shm */,
-				E16279C91C8734AB00E8101B /* persistentStore */,
+				E18908BB1C87F38200B99325 /* persistentStore */,
+				E18908BC1C87F38200B99325 /* persistentStore-wal */,
+				E18908BD1C87F38200B99325 /* persistentStore-shm */,
 			);
 			path = StoreContent;
 			sourceTree = "<group>";
@@ -740,21 +735,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				E180856F1C466BE4004156DF /* InformationTableViewController.xib in Resources */,
+				E18908BF1C87F38200B99325 /* persistentStore-wal in Resources */,
 				E1770ADE1C463DA300DC4594 /* YALSunnyRefreshControl.xib in Resources */,
 				E141802B1C21B2BF00195B75 /* imageInfo.plist in Resources */,
 				E18085741C466D31004156DF /* AvatorTableViewCell.xib in Resources */,
 				E186E2C81C425ABA001FA9A6 /* SeatTableHeaderView.xib in Resources */,
+				E18908C01C87F38200B99325 /* persistentStore-shm in Resources */,
 				E1F07E631C44E84E00A4FCF8 /* LeftTimeView.xib in Resources */,
 				E1DA785F1C311A9500402E3F /* MineFooterView.xib in Resources */,
-				E16279CB1C8734AB00E8101B /* persistentStore-shm in Resources */,
 				E1B5B7B81C15D59B00CD2981 /* LaunchScreen.storyboard in Resources */,
-				E16279CA1C8734AB00E8101B /* persistentStore-wal in Resources */,
 				E1F570A01C3A077B009E65DA /* CustomBookingView.xib in Resources */,
 				E1B5B7B51C15D59B00CD2981 /* Assets.xcassets in Resources */,
 				E1B5B7B31C15D59B00CD2981 /* Main.storyboard in Resources */,
-				E16279CC1C8734AB00E8101B /* persistentStore in Resources */,
 				E186E2D01C42807B001FA9A6 /* TimeTableViewCell.xib in Resources */,
 				E1B88E501C41476600CE2F2B /* SeatTableViewCell.xib in Resources */,
+				E18908BE1C87F38200B99325 /* persistentStore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,7 +831,6 @@
 				E14180301C21B30E00195B75 /* ZSeat.m in Sources */,
 				E1BEDBD11C1D600C0039F642 /* DetailViewController.m in Sources */,
 				E17574CB1C8166DF0047E843 /* User.m in Sources */,
-				E17A17C71C871E5B00478306 /* Notice+CoreDataProperties.m in Sources */,
 				E14180261C210F9B00195B75 /* TipsView.m in Sources */,
 				E1A878891C17CB7300548FC5 /* SignInQRCodeViewController.m in Sources */,
 				E186E2CB1C426916001FA9A6 /* SettingTableViewController.m in Sources */,
@@ -850,21 +844,21 @@
 				E132064E1C806764002DE512 /* Seat.m in Sources */,
 				E1F5709E1C3A0766009E65DA /* CustomBookingView.m in Sources */,
 				E1DA785D1C311A7700402E3F /* MineFooterView.m in Sources */,
-				E13206411C806700002DE512 /* Venue+CoreDataProperties.m in Sources */,
 				E1DDCCF41C2B932100264802 /* LibrarySeatsHeaders.m in Sources */,
 				E180856E1C466BE4004156DF /* InformationTableViewController.m in Sources */,
 				E1B5B7DD1C15D8C000CD2981 /* LibrarySeatsTabBarController.m in Sources */,
 				E1B88E4D1C41473500CE2F2B /* SeatTableViewCell.m in Sources */,
 				E17F134A1C16BF5B00B2D0FB /* RollingImageScrollView.m in Sources */,
-				E13206401C806700002DE512 /* Seat+CoreDataProperties.m in Sources */,
 				E14180291C21365700195B75 /* Tip.m in Sources */,
 				E132064D1C806764002DE512 /* Library.m in Sources */,
+				E18908B21C87EC7700B99325 /* Venue+CoreDataProperties.m in Sources */,
+				E18908B31C87EC7700B99325 /* Library+CoreDataProperties.m in Sources */,
 				E186E2CF1C42807B001FA9A6 /* TimeTableViewCell.m in Sources */,
 				E186E2C61C425AA0001FA9A6 /* SeatTableHeaderView.m in Sources */,
 				E18681FC1C1AB47C0054EA41 /* SeatsProgressView.m in Sources */,
-				E132063E1C806700002DE512 /* Library+CoreDataProperties.m in Sources */,
 				E1F47CB91C42B17E0081CF45 /* CMPopTipView.m in Sources */,
 				E1CEEBE11C3AC0430056089E /* LocationHandler.m in Sources */,
+				E18908B41C87EC7700B99325 /* Notice+CoreDataProperties.m in Sources */,
 				E1A6DD311C2A81E200A36E6D /* MineViewController.m in Sources */,
 				E14180311C21B30E00195B75 /* ZSeatSelector.m in Sources */,
 				E1DA78641C31616E00402E3F /* BookingViewController.m in Sources */,

@@ -18,7 +18,7 @@
 @property (strong, nonatomic) UISegmentedControl *segmentControl;
 @property (strong, nonatomic) CustomBookingView *fastBookingView;
 @property (strong, nonatomic) CustomBookingView *detailBookingView;
-@property (strong, nonatomic) Library *library;
+//@property (strong, nonatomic) Library *library;
 @property (nonatomic) int bookVenueID;
 @property (strong, nonatomic) NetworkHandler *networkHandler;
 @property (nonatomic, strong) PQFBouncingBalls *bouncingBalls;
@@ -37,13 +37,6 @@
         _bouncingBalls.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.5];
     }
     return _bouncingBalls;
-}
-
-- (Library *)library {
-    if (!_library) {
-        _library = [Library sharedLibrary];
-    }
-    return _library;
 }
 
 - (UISegmentedControl *)segmentControl {

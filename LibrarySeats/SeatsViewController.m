@@ -46,7 +46,7 @@
 
     }
     [self.bouncingBalls show];
-//    [self getVenueSituation];
+    [self getVenueSituation];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -155,25 +155,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     SeatTableHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([SeatTableHeaderView class]) owner:nil options:nil] lastObject];
     headerView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 30);
-    switch (section) {
-        case 0:
-            headerView.floor = @"一楼";
-            break;
-        case 1:
-            headerView.floor = @"二楼";
-            break;
-        case 2:
-            headerView.floor = @"三楼";
-            break;
-        case 3:
-            headerView.floor = @"四楼";
-            break;
-        case 4:
-            headerView.floor = @"五楼";
-            break;
-        default:
-            break;
-    }
+    headerView.floor = [[self.fetchedRequestController sections] objectAtIndex:section].name;
     return headerView;
 }
 
@@ -223,8 +205,8 @@
                     }
                 }
             }];
+            [self.managedObjectContext save:nil];
         }
-        [self.library addVenues:[NSSet setWithArray:array]];
     }
 }
 
