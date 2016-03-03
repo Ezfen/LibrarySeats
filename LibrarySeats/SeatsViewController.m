@@ -41,8 +41,13 @@
                                                       usingBlock:^(NSNotification * _Nonnull note) {
                                                           self.managedObjectContext = note.userInfo[LibrarySeatDatabaseAvailabilityContext];
                                                       }];
-
     }
+    [[NSNotificationCenter defaultCenter] addObserverForName:LockOrBookSeatsSuccessNotification
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification * _Nonnull note) {
+                                                      [self getVenueSituation];
+                                                  }];
     [self.bouncingBalls show];
     [self getVenueSituation];
 }
@@ -87,7 +92,7 @@
 
 - (NetworkHandler *)networkHandler {
     if (!_networkHandler) {
-        _networkHandler = [NetworkHandler sharedNetworkHandler];
+        _networkHandler = [NetworkHandler new];
         _networkHandler.delegate = self;
     }
     return _networkHandler;

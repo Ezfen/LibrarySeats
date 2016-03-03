@@ -9,6 +9,7 @@
 #import "SignInQRCodeViewController.h"
 #import "NetworkHandler.h"
 #import "PQFBouncingBalls.h"
+#import "User.h"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreLocation/CoreLocation.h>
 
@@ -20,6 +21,7 @@
 @property (strong, nonatomic) AVCaptureMetadataOutput *output;
 @property (strong, nonatomic) AVCaptureVideoPreviewLayer *previewLayer;
 
+@property (strong, nonatomic) User *user;
 @property (strong, nonatomic) NetworkHandler *networkHandler;
 
 //UI
@@ -61,10 +63,17 @@
 #pragma mark - setter getter
 - (NetworkHandler *)networkHandler {
     if (!_networkHandler) {
-        _networkHandler = [NetworkHandler sharedNetworkHandler];
+        _networkHandler = [NetworkHandler new];
         _networkHandler.delegate = self;
     }
     return _networkHandler;
+}
+
+- (User *)user {
+    if (!_user) {
+        _user = [User sharedUser];
+    }
+    return _user;
 }
 
 - (NSString *)requestURL {
@@ -186,7 +195,7 @@
 
 #pragma mark - network
 - (void)lockSeat:(int) seatID {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@?seatID=%i&userID=1",WEBSITE, [self requestURL], seatID];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@?seatID=%i&userID=%i",WEBSITE, [self requestURL], seatID, [self.user.ID intValue]];
     urlStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [NSURL URLWithString:urlStr];
     [self.networkHandler responseMessageFromURL:url];
@@ -200,6 +209,9 @@
         NSString *describe = responseMessage[@"describe"];
         [self showAlertView:describe];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:LockOrBookSeatsSuccessNotification
+                                                        object:self
+                                                      userInfo:nil];
     [self.bouncingBalls remove];
 }
 

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Venue.h"
+#import "User.h"
 #import "NetworkHandler.h"
 #import "LibrarySeatsTabBarController.h"
 #import "PQFCustomLoaders/PQFBouncingBalls.h"
@@ -21,6 +22,7 @@
 @property (strong, nonatomic) CustomBookingView *detailBookingView;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSArray *venues;
+@property (strong, nonatomic) User *user;
 @property (nonatomic) int bookVenueID;
 @property (strong, nonatomic) NetworkHandler *networkHandler;
 @property (nonatomic, strong) PQFBouncingBalls *bouncingBalls;
@@ -51,6 +53,13 @@
 - (NSString *)requestURL:(int)choose {
     if (choose == 1) return @"/seat/fastbooking.action";
     else return @"/seat/custombooking.action";
+}
+
+- (User *)user {
+    if (!_user) {
+        _user = [User sharedUser];
+    }
+    return _user;
 }
 
 - (PQFBouncingBalls *)bouncingBalls {
@@ -99,7 +108,7 @@
 
 - (NetworkHandler *)networkHandler {
     if (!_networkHandler) {
-        _networkHandler = [NetworkHandler sharedNetworkHandler];
+        _networkHandler = [NetworkHandler new];
         _networkHandler.delegate = self;
     }
     return _networkHandler;
@@ -196,14 +205,14 @@
 
 #pragma mark - network
 - (void)fastBookSeat {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@?venueID=%i&userID=1",WEBSITE, [self requestURL:1], self.bookVenueID];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@?venueID=%i&userID=%i",WEBSITE, [self requestURL:1], self.bookVenueID, [self.user.ID intValue]];
     urlStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [NSURL URLWithString:urlStr];
     [self.networkHandler responseMessageFromURL:url];
 }
 
 - (void)customBookSeat {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@?seatID=%i&userID=1",WEBSITE, [self requestURL:2], self.selectedSeatID];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@?seatID=%i&userID=%i",WEBSITE, [self requestURL:2], self.selectedSeatID, [self.user.ID intValue]];
     urlStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [NSURL URLWithString:urlStr];
     [self.networkHandler responseMessageFromURL:url];
@@ -219,6 +228,9 @@
         [self showAlertView:describe];
     }
     [self.bouncingBalls remove];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LockOrBookSeatsSuccessNotification
+                                                                 object:self
+                                                               userInfo:nil];
 }
 
 - (void)requestError:(NSError *)error {
