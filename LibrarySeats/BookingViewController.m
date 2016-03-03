@@ -109,9 +109,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"k"]];
-    imageView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 44);
+    self.view.backgroundColor = [UIColor colorWithRed:1 green:1 blue:240.0/255 alpha:1];
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"k"]];
+//    imageView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 44);
+//    [self.view addSubview:imageView];
     self.managedObjectContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).librarySeatContext;
     if (!self.managedObjectContext) {
         [[NSNotificationCenter defaultCenter] addObserverForName:LibrarySeatDatabaseAvailabilityNotification
@@ -122,7 +123,6 @@
                                                       }];
         
     }
-    [self.view addSubview:imageView];
     [self.view addSubview:self.fastBookingView];
 }
 

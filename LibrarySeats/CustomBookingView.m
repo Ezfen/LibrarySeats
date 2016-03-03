@@ -60,8 +60,8 @@
 }
 
 - (void)awakeFromNib {
-    self.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.6];
-    self.backgroundView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.4];
+//    self.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.6];
+//    self.backgroundView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.4];
     self.backgroundView.layer.borderColor = [UIColor grayColor].CGColor;
     self.backgroundView.layer.borderWidth = 2;
     self.backgroundView.layer.cornerRadius = 10;
