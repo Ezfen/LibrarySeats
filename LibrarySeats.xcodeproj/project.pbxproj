@@ -59,6 +59,8 @@
 		E1DA78641C31616E00402E3F /* BookingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DA78631C31616E00402E3F /* BookingViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E1DDCCF41C2B932100264802 /* LibrarySeatsHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DDCCF31C2B932100264802 /* LibrarySeatsHeaders.m */; settings = {ASSET_TAGS = (); }; };
 		E1DF336F1C30C42400C5B9A7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DF336E1C30C42400C5B9A7 /* LoginViewController.m */; settings = {ASSET_TAGS = (); }; };
+		E1E34D341C882D1B00858F76 /* NoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E34D321C882D1B00858F76 /* NoticeDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
+		E1E34D351C882D1B00858F76 /* NoticeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E34D331C882D1B00858F76 /* NoticeDetailViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		E1F07E611C44E83600A4FCF8 /* LeftTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F07E601C44E83600A4FCF8 /* LeftTimeView.m */; settings = {ASSET_TAGS = (); }; };
 		E1F07E631C44E84E00A4FCF8 /* LeftTimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F07E621C44E84E00A4FCF8 /* LeftTimeView.xib */; settings = {ASSET_TAGS = (); }; };
 		E1F47CB91C42B17E0081CF45 /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F47CB81C42B17E0081CF45 /* CMPopTipView.m */; settings = {ASSET_TAGS = (); }; };
@@ -180,6 +182,9 @@
 		E1DDCCF51C2B94CB00264802 /* LibrarySeatsPrefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibrarySeatsPrefix.pch; sourceTree = "<group>"; };
 		E1DF336D1C30C42400C5B9A7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E1DF336E1C30C42400C5B9A7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		E1E34D311C882D1B00858F76 /* NoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeDetailViewController.h; sourceTree = "<group>"; };
+		E1E34D321C882D1B00858F76 /* NoticeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeDetailViewController.m; sourceTree = "<group>"; };
+		E1E34D331C882D1B00858F76 /* NoticeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeDetailViewController.xib; sourceTree = "<group>"; };
 		E1F07E5F1C44E83600A4FCF8 /* LeftTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftTimeView.h; sourceTree = "<group>"; };
 		E1F07E601C44E83600A4FCF8 /* LeftTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTimeView.m; sourceTree = "<group>"; };
 		E1F07E621C44E84E00A4FCF8 /* LeftTimeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftTimeView.xib; sourceTree = "<group>"; };
@@ -410,6 +415,9 @@
 				E1C7624A1C22A438006977C1 /* NoticesViewController.m */,
 				E1C7624C1C22AE33006977C1 /* WebViewController.h */,
 				E1C7624D1C22AE33006977C1 /* WebViewController.m */,
+				E1E34D311C882D1B00858F76 /* NoticeDetailViewController.h */,
+				E1E34D321C882D1B00858F76 /* NoticeDetailViewController.m */,
+				E1E34D331C882D1B00858F76 /* NoticeDetailViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -736,6 +744,7 @@
 			files = (
 				E180856F1C466BE4004156DF /* InformationTableViewController.xib in Resources */,
 				E18908BF1C87F38200B99325 /* persistentStore-wal in Resources */,
+				E1E34D351C882D1B00858F76 /* NoticeDetailViewController.xib in Resources */,
 				E1770ADE1C463DA300DC4594 /* YALSunnyRefreshControl.xib in Resources */,
 				E141802B1C21B2BF00195B75 /* imageInfo.plist in Resources */,
 				E18085741C466D31004156DF /* AvatorTableViewCell.xib in Resources */,
@@ -843,6 +852,7 @@
 				E18085731C466D31004156DF /* AvatorTableViewCell.m in Sources */,
 				E132064E1C806764002DE512 /* Seat.m in Sources */,
 				E1F5709E1C3A0766009E65DA /* CustomBookingView.m in Sources */,
+				E1E34D341C882D1B00858F76 /* NoticeDetailViewController.m in Sources */,
 				E1DA785D1C311A7700402E3F /* MineFooterView.m in Sources */,
 				E1DDCCF41C2B932100264802 /* LibrarySeatsHeaders.m in Sources */,
 				E180856E1C466BE4004156DF /* InformationTableViewController.m in Sources */,

@@ -7,6 +7,7 @@
 //
 #import "LibrarySeatsTabBarController.h"
 #import "NoticesViewController.h"
+#import "NoticeDetailViewController.h"
 #import "RollingImageScrollView.h"
 #import "WebViewController.h"
 #import "NetworkHandler.h"
@@ -191,6 +192,17 @@
     return 60;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView cellForRowAtIndexPath:indexPath].selected = NO;
+    Notice *notice = [self.fetchedRequestController objectAtIndexPath:indexPath];
+    NoticeDetailViewController *ndvc = [[NoticeDetailViewController alloc] init];
+    ndvc.title = @"详情";
+    ndvc.noticeTitle = notice.title;
+    ndvc.noticeTime = notice.lastUpdate;
+    ndvc.noticeContent = notice.content;
+    [self.navigationController pushViewController:ndvc animated:YES];
+}
+
 #pragma mark - network
 - (void)noticeInfo {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",WEBSITE, [self requestURL]];
@@ -224,7 +236,9 @@
                     notice.iD = @([dic[@"intID"] intValue]);
                     notice.title = dic[@"vcTitle"];
                     notice.content = dic[@"vcContent"];
-                    notice.lastUpdate = dic[@"dtLastUpdate"];
+                    NSMutableString *timeString = [dic[@"dtLastUpdate"] mutableCopy];
+                    [timeString replaceCharactersInRange:[timeString rangeOfString:@"T"] withString:@" "];
+                    notice.lastUpdate = [timeString copy];
                     [weakSelf.managedObjectContext save:nil];
                 }
             }];
