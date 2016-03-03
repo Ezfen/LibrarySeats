@@ -20,7 +20,7 @@
 @property (strong, nonatomic) NSNumber *sex;            //性别
 @property (strong, nonatomic) NSString *avatorURL;      //头像地址
 @property (strong, nonatomic) NSString *selectedVenue;  //占座场馆
-@property (strong, nonatomic) NSNumber *selecetdSeat;   //占座座位号
+@property (strong, nonatomic) NSNumber *selecetdSeat;   //占座座位号 
 @property (strong, nonatomic) NSString *deadLineTime;   //座位到期时间
 
 + (instancetype)sharedUser;
