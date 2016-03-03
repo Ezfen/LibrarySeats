@@ -7,12 +7,16 @@
 //
 
 #import "NetworkHandler.h"
+#import "AppDelegate.h"
 #import <AFNetworking/AFNetworking.h>
 
 @interface NetworkHandler ()
+
 @end
 
 @implementation NetworkHandler
+
+static int netWorkTasksCount = 0;
 
 + (instancetype)sharedNetworkHandler {
     static NetworkHandler *networkHandler;
@@ -39,6 +43,9 @@
     NetworkHandler *networkHandler = [NetworkHandler sharedNetworkHandler];
     AFURLSessionManager *sessinManager = networkHandler.sessionManager;
     
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    netWorkTasksCount ++;
+    
     NSURLSessionDataTask *dataTask = [sessinManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSDictionary *responseMessage = (NSDictionary *)responseObject[@"responseMessage"];
@@ -49,6 +56,10 @@
             if ([self.delegate respondsToSelector:@selector(requestError:)]) {
                 [self.delegate requestError:error];
             }
+        }
+        netWorkTasksCount --;
+        if (netWorkTasksCount == 0) {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         }
     }];
     [dataTask resume];

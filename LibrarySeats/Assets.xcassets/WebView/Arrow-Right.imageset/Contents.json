@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Arrow-Right.png",
+      "filename" : "Arrow-Right@2x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Arrow-Right@2x.png",
       "scale" : "2x"
     },
     {

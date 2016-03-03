@@ -93,6 +93,12 @@
     [self.tableView reloadData];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.sunnyRefreshControl endRefreshing];
+}
+
+#pragma mark - dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
 }
@@ -198,12 +204,12 @@
             self.user.selecetdSeat = dic[@"seatNum"];
             self.user.deadLineTime = dic[@"deadLineTIme"];
         }];
-        [self.tableView reloadData];
     } else {
         self.user.selectedVenue = @"暂无";
         self.user.selecetdSeat = nil;
         self.user.deadLineTime = @"";
     }
+    [self.tableView reloadData];
     [self.sunnyRefreshControl endRefreshing];
 }
 

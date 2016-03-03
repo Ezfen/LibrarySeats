@@ -98,6 +98,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [_rollingImageView.timer invalidate];
+    [self.sunnyRefreshControl endRefreshing];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

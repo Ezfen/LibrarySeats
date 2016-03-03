@@ -6,6 +6,7 @@
 //  Copyright © 2016年 阿澤. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "CustomBookingView.h"
 #import "SeatsProgressView.h"
 #import "Library.h"
@@ -17,14 +18,33 @@
 //Gesture集合
 @property (strong, nonatomic) NSMutableArray* tapGestures;
 @property (strong, nonatomic) NSMutableArray* seatsProgressViews;
-
-@property (strong, nonatomic) Library *library;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSArray *venues;
 @property (weak, nonatomic) IBOutlet UIView *backgroundView;
 @end
 
 @implementation CustomBookingView
 
 #pragma mark - setter and getter
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+    _managedObjectContext = managedObjectContext;
+    if (_managedObjectContext) {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Venue" inManagedObjectContext:_managedObjectContext];
+        [fetchRequest setEntity:entity];
+        // Specify criteria for filtering which objects to fetch
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"libraryID=%d && totalSeatNum<>0", 1];
+        [fetchRequest setPredicate:predicate];
+        // Specify how the fetched objects should be sorted
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"floor"
+                                                                       ascending:YES];
+        [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+        
+        NSError *error = nil;
+        self.venues = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    }
+}
+
 - (NSMutableArray *)tapGestures {
     if (!_tapGestures) {
         _tapGestures = [[NSMutableArray alloc] init];
@@ -39,13 +59,6 @@
     return _seatsProgressViews;
 }
 
-- (Library *)library {
-    if (!_library) {
-        _library = [Library sharedLibrary];
-    }
-    return _library;
-}
-
 - (void)awakeFromNib {
     self.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.6];
     self.backgroundView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.4];
@@ -53,6 +66,16 @@
     self.backgroundView.layer.borderWidth = 2;
     self.backgroundView.layer.cornerRadius = 10;
     self.backgroundView.clipsToBounds = YES;
+    self.managedObjectContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).librarySeatContext;
+    if (!self.managedObjectContext) {
+        [[NSNotificationCenter defaultCenter] addObserverForName:LibrarySeatDatabaseAvailabilityNotification
+                                                          object:nil
+                                                           queue:nil
+                                                      usingBlock:^(NSNotification * _Nonnull note) {
+                                                          self.managedObjectContext = note.userInfo[LibrarySeatDatabaseAvailabilityContext];
+                                                      }];
+        
+    }
 }
 
 - (void)configureVenueSelectView {
@@ -75,10 +98,9 @@
 }
 
 - (void)twoProgressViewsPerRow:(CGPoint *)RowOrigin {
-    NSArray *array = [self.library allVenues];
     CGFloat screenWidth = self.seatScrollView.frame.size.width;
-    for (int i = 0; i < array.count; ++i) {
-        Venue *venue = array[i];
+    for (int i = 0; i < self.venues.count; ++i) {
+        Venue *venue = self.venues[i];
         CGRect rect = CGRectMake(RowOrigin->x, RowOrigin->y, screenWidth / 2.0, screenWidth / 2.0);
         SeatsProgressView *view = [[SeatsProgressView alloc] initWithFrame:rect andTotal:[venue.totalSeatNum intValue] andCount:[venue.bookedSeatNum intValue]];
         view.title = venue.name;
@@ -89,7 +111,7 @@
         [self.seatScrollView addSubview:view];
         if (i % 2 == 0) {
             RowOrigin->x += screenWidth / 2.0;
-            if (i == array.count - 1) {
+            if (i == self.venues.count - 1) {
                 RowOrigin->y += screenWidth / 2.0;
             }
         }

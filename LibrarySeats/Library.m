@@ -13,24 +13,4 @@
 
 // Insert code here to add functionality to your managed object subclass
 
-+ (instancetype)sharedLibrary {
-    static Library *library;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        library = [Library new];
-    });
-    return library;
-}
-
-- (NSMutableArray *)allVenues {
-    if (!self.venues) return nil;
-    NSMutableArray *allVenues = [[NSMutableArray alloc] init];
-    for (Venue *venue in self.venues) {
-        if (venue.totalSeatNum != 0) {
-            [allVenues addObject:venue];
-        }
-    }
-    return allVenues;
-}
-
 @end

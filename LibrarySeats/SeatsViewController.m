@@ -21,8 +21,6 @@
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedRequestController;
-@property (strong, nonatomic) Venue *venue;
-@property (strong, nonatomic) Library *library;
 @property (strong, nonatomic) NetworkHandler *networkHandler;
 @property (nonatomic, strong) PQFBouncingBalls *bouncingBalls;
 @end
@@ -87,13 +85,6 @@
     return @"/venue/venueinfo.action";
 }
 
-- (Library *)library {
-    if (!_library) {
-        _library = [Library sharedLibrary];
-    }
-    return _library;
-}
-
 - (NetworkHandler *)networkHandler {
     if (!_networkHandler) {
         _networkHandler = [NetworkHandler sharedNetworkHandler];
@@ -114,6 +105,9 @@
     }
     return _tableView;
 }
+
+
+
 
 #pragma mark - tableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -167,13 +161,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Venue *venue = [self.fetchedRequestController objectAtIndexPath:indexPath];
-    if (venue.totalSeatNum != 0) {
+    if ([venue.totalSeatNum intValue] != 0) {
         DetailViewController *detail = [[DetailViewController alloc] init];
         detail.total = [venue.totalSeatNum intValue];
         detail.venueID = [venue.iD intValue];
         detail.category = YES;
         detail.title = venue.name;
         [self.navigationController pushViewController:detail animated:YES];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                        message:@"该场馆不设有座位，请选择其他"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
     }
 }
 
