@@ -149,7 +149,7 @@
 		E1A6DD2F1C2A81E200A36E6D /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		E1A878871C17CB7300548FC5 /* SignInQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInQRCodeViewController.h; sourceTree = "<group>"; };
 		E1A878881C17CB7300548FC5 /* SignInQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInQRCodeViewController.m; sourceTree = "<group>"; };
-		E1B5B7A51C15D59B00CD2981 /* LibrarySeats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibrarySeats.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1B5B7A51C15D59B00CD2981 /* EZSeats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZSeats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B5B7A91C15D59B00CD2981 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E1B5B7AB1C15D59B00CD2981 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E1B5B7AC1C15D59B00CD2981 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -487,7 +487,7 @@
 		E1B5B7A61C15D59B00CD2981 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E1B5B7A51C15D59B00CD2981 /* LibrarySeats.app */,
+				E1B5B7A51C15D59B00CD2981 /* EZSeats.app */,
 				E1B5B7BE1C15D59B00CD2981 /* LibrarySeatsTests.xctest */,
 				E1B5B7C91C15D59B00CD2981 /* LibrarySeatsUITests.xctest */,
 			);
@@ -653,7 +653,7 @@
 			);
 			name = LibrarySeats;
 			productName = LibrarySeats;
-			productReference = E1B5B7A51C15D59B00CD2981 /* LibrarySeats.app */;
+			productReference = E1B5B7A51C15D59B00CD2981 /* EZSeats.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E1B5B7BD1C15D59B00CD2981 /* LibrarySeatsTests */ = {
@@ -1010,6 +1010,7 @@
 			baseConfigurationReference = 6F021ECA0ECAC1E3106226FE /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LibrarySeats/LibrarySeatsPrefix.pch;
@@ -1017,7 +1018,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ezfen.LibrarySeats;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EZSeats;
 			};
 			name = Debug;
 		};
@@ -1026,6 +1027,7 @@
 			baseConfigurationReference = B26053295D024FF084BCCF28 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LibrarySeats/LibrarySeatsPrefix.pch;
@@ -1033,7 +1035,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ezfen.LibrarySeats;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EZSeats;
 			};
 			name = Release;
 		};

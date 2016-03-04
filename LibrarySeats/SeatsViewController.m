@@ -32,6 +32,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithRed:1 green:1 blue:240.0/255 alpha:1];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"colorful"]];
+    imageView.frame = CGRectMake((self.view.frame.size.width - 260) / 2.0, (self.view.frame.size.height - 260) / 2.0, 260, 260);
+    [self.view addSubview:imageView];
     [self.view addSubview:self.tableView];
     self.managedObjectContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).librarySeatContext;
     if (!self.managedObjectContext) {
@@ -160,7 +163,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 10)];
-    view.backgroundColor = [UIColor colorWithRed:1 green:1 blue:240.0/255 alpha:1];
+    view.backgroundColor = [UIColor clearColor];
     return view;
 }
 

@@ -24,7 +24,7 @@
 
 - (void)setUI:(NSInteger)index {
     self.backgroundImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"seat-background%i",index]];
-    self.backgroundImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.backgroundImageView.layer.borderColor = [UIColor colorWithRed:1 green:1 blue:240.0/255 alpha:1].CGColor;
     self.backgroundImageView.layer.borderWidth = 1;
     self.backgroundImageView.layer.cornerRadius = 10;
     self.backgroundImageView.clipsToBounds = YES;

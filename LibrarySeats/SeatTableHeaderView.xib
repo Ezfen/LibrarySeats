@@ -12,27 +12,27 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="楼层" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkb-Z4-wAr">
-                    <rect key="frame" x="32" y="5" width="263" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <rect key="frame" x="46" y="4" width="263" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="separator" translatesAutoresizingMaskIntoConstraints="NO" id="K5k-xX-nJF">
-                    <rect key="frame" x="8" y="3" width="16" height="25"/>
+                    <rect key="frame" x="13" y="3" width="16" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="6Wb-2g-UKK"/>
                         <constraint firstAttribute="width" constant="16" id="xFK-Xa-HWt"/>
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="K5k-xX-nJF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="3" id="1n6-hr-DSM"/>
-                <constraint firstItem="mkb-Z4-wAr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="32" id="6f0-Uz-1KB"/>
-                <constraint firstItem="K5k-xX-nJF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="8oD-aP-1d3"/>
-                <constraint firstAttribute="trailing" secondItem="mkb-Z4-wAr" secondAttribute="trailing" constant="35" id="VnF-bS-KNR"/>
-                <constraint firstAttribute="bottom" secondItem="mkb-Z4-wAr" secondAttribute="bottom" constant="4" id="ll6-s3-Tj7"/>
-                <constraint firstItem="mkb-Z4-wAr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="y0d-vt-0xQ"/>
+                <constraint firstItem="mkb-Z4-wAr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="46" id="6f0-Uz-1KB"/>
+                <constraint firstItem="K5k-xX-nJF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="13" id="8oD-aP-1d3"/>
+                <constraint firstAttribute="trailing" secondItem="mkb-Z4-wAr" secondAttribute="trailing" constant="21" id="VnF-bS-KNR"/>
+                <constraint firstAttribute="bottom" secondItem="mkb-Z4-wAr" secondAttribute="bottom" constant="5" id="ll6-s3-Tj7"/>
+                <constraint firstItem="mkb-Z4-wAr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="y0d-vt-0xQ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>

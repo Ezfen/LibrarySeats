@@ -76,6 +76,9 @@
     [self setTitle:@"我的"];
     _menuNameArray = @[@"设置"];
     _menuImageArray = @[@"setting"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"colorful"]];
+    imageView.frame = CGRectMake((self.view.frame.size.width - 260) / 2.0, (self.view.frame.size.height - 260) / 2.0, 260, 260);
+    [self.view addSubview:imageView];
     [self.view addSubview:self.tableView];
     [self.sunnyRefreshControl attachToScrollView:self.tableView];
     [self seatInfo];
@@ -120,6 +123,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.6];
     }
     switch (indexPath.section) {
         case 0:

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E1B5B7A41C15D59B00CD2981"
-               BuildableName = "LibrarySeats.app"
+               BuildableName = "EZSeats.app"
                BlueprintName = "LibrarySeats"
                ReferencedContainer = "container:LibrarySeats.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E1B5B7A41C15D59B00CD2981"
-            BuildableName = "LibrarySeats.app"
+            BuildableName = "EZSeats.app"
             BlueprintName = "LibrarySeats"
             ReferencedContainer = "container:LibrarySeats.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E1B5B7A41C15D59B00CD2981"
-            BuildableName = "LibrarySeats.app"
+            BuildableName = "EZSeats.app"
             BlueprintName = "LibrarySeats"
             ReferencedContainer = "container:LibrarySeats.xcodeproj">
          </BuildableReference>
@@ -95,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E1B5B7A41C15D59B00CD2981"
-            BuildableName = "LibrarySeats.app"
+            BuildableName = "EZSeats.app"
             BlueprintName = "LibrarySeats"
             ReferencedContainer = "container:LibrarySeats.xcodeproj">
          </BuildableReference>

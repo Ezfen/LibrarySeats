@@ -83,6 +83,9 @@
     self.webViewController = [[WebViewController alloc] init];
     [self.sunnyRefreshControl attachToScrollView:self.tableView];
     self.view.backgroundColor = [UIColor colorWithRed:1 green:1 blue:240.0/255 alpha:1];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"colorful"]];
+    imageView.frame = CGRectMake((self.view.frame.size.width - 260) / 2.0, (self.view.frame.size.height - 260) / 2.0, 260, 260);
+    [self.view addSubview:imageView];
     [self.view addSubview:self.tableView];
     self.managedObjectContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).librarySeatContext;
     if (!self.managedObjectContext) {
@@ -158,7 +161,7 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Notice *notice = [self.fetchedRequestController objectAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:240.0/255 alpha:1];
+    cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.6];
     cell.textLabel.text = notice.title;
     cell.detailTextLabel.text = notice.lastUpdate;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
