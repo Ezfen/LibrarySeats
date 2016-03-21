@@ -97,7 +97,7 @@
         }
     }
     initial_seat_y += 2;
-    float viewWidth = final_width*seat_width, viewHeight = initial_seat_y*seat_height;
+    float viewWidth = final_width*seat_width, viewHeight = initial_seat_y*seat_height + 20;
     if (viewWidth >= [UIScreen mainScreen].bounds.size.width) {
         zoomable_view.frame = CGRectMake(0, 0, viewWidth, viewHeight);
     } else {
@@ -126,6 +126,11 @@
     [seatButton setPrice:self.seat_price];
     [seatButton addTarget:self action:@selector(seatSelected:) forControlEvents:UIControlEventTouchUpInside];
     [zoomable_view addSubview:seatButton];
+    UILabel *seatNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(seatButton.frame.origin.x, CGRectGetMaxY(seatButton.frame) + 2, seat_width, 15)];
+    seatNumLabel.text = [NSString stringWithFormat:@"%d",(row - 1) * 8 + column];
+    seatNumLabel.textColor = [UIColor colorWithRed:255/255.0 green:106/255.0 blue:106/255.0 alpha:1];
+    seatNumLabel.textAlignment = NSTextAlignmentCenter;
+    [zoomable_view addSubview:seatNumLabel];
     [self.seatButtonArray addObject:seatButton];
 }
 

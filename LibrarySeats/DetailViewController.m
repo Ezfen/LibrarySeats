@@ -11,6 +11,8 @@
 #import "NetworkHandler.h"
 #import "ZSeatSelector.h"
 #import "Seat.h"
+#import "Tip.h"
+#import "TipsView.h"
 #import "PQFCustomLoaders/PQFCustomLoaders.h"
 
 @interface DetailViewController () <NetworkHandlerDelegate,ZSeatSelectorDelegate,UIAlertViewDelegate>
@@ -18,10 +20,29 @@
 @property (strong, nonatomic) NSMutableString *map;
 @property (strong, nonatomic) NetworkHandler *networkHandler;
 @property (strong, nonatomic) NSMutableArray *seats;
-@property (nonatomic, strong) PQFBouncingBalls *bouncingBalls;
+@property (strong, nonatomic) PQFBouncingBalls *bouncingBalls;
+@property (strong, nonatomic) TipsView *tipView;
 @end
 
 @implementation DetailViewController
+
+#pragma mark - setter & getter
+
+- (TipsView *)tipView {
+    if (!_tipView) {
+        //添加提示View
+        _tipView = [[TipsView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, 25)];
+        _tipView.backgroundColor = [UIColor whiteColor];
+        _tipView.layer.borderWidth = 0.5;
+        _tipView.layer.borderColor = [UIColor grayColor].CGColor;
+        Tip *green = [[Tip alloc] initWithTipColor:[UIColor greenColor] andTipDetail:@"<20Min"];
+        Tip *yellow = [[Tip alloc] initWithTipColor:[UIColor yellowColor] andTipDetail:@"20-40Min"];
+        Tip *red = [[Tip alloc] initWithTipColor:[UIColor redColor] andTipDetail:@">40Min"];
+        NSDictionary *dic = @{@(1):green,@(2):yellow,@(3):red};
+        _tipView.tips = dic;
+    }
+    return _tipView;
+}
 
 - (NSMutableString *)map {
     if (!_map) {
@@ -39,15 +60,15 @@
 
 - (ZSeatSelector *)seatSelector {
     if (!_seatSelector) {
-        _seatSelector = [[ZSeatSelector alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height)];
+        _seatSelector = [[ZSeatSelector alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.height - 100)];
         [_seatSelector setSeatSize:CGSizeMake(32, 32)];
         [_seatSelector setAvailableImage:[UIImage imageNamed:@"A"]
-             andUnavailableImage:[UIImage imageNamed:@"U"]
-                andDisabledImage:[UIImage imageNamed:@"D"]
-                andSelectedImage:[UIImage imageNamed:@"S"]];
+                     andUnavailableImage:[UIImage imageNamed:@"U"]
+                        andDisabledImage:[UIImage imageNamed:@"D"]
+                        andSelectedImage:[UIImage imageNamed:@"S"]];
         _seatSelector.seat_delegate = self;
         _seatSelector.selected_seat_limit = 1;
-        _seatSelector.backgroundColor = [UIColor colorWithRed:1 green:1 blue:240.0/255 alpha:1];
+        _seatSelector.backgroundColor = [UIColor clearColor];
     }
     return _seatSelector;
 }
@@ -76,6 +97,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor colorWithRed:1 green:1 blue:240.0/255.0 alpha:1];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"colorful"]];
+    imageView.frame = CGRectMake((self.view.frame.size.width - 260) / 2.0, (self.view.frame.size.height - 260) / 2.0, 260, 260);
+    [self.view addSubview:imageView];
+    [self.view addSubview:self.tipView];
     [self.view addSubview:self.seatSelector];
     [self getSeatsInfoByVenueID];
 }
