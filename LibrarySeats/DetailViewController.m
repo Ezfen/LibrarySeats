@@ -11,8 +11,6 @@
 #import "NetworkHandler.h"
 #import "ZSeatSelector.h"
 #import "Seat.h"
-#import "Tip.h"
-#import "TipsView.h"
 #import "PQFCustomLoaders/PQFCustomLoaders.h"
 
 @interface DetailViewController () <NetworkHandlerDelegate,ZSeatSelectorDelegate,UIAlertViewDelegate>
@@ -21,28 +19,12 @@
 @property (strong, nonatomic) NetworkHandler *networkHandler;
 @property (strong, nonatomic) NSMutableArray *seats;
 @property (strong, nonatomic) PQFBouncingBalls *bouncingBalls;
-@property (strong, nonatomic) TipsView *tipView;
+
 @end
 
 @implementation DetailViewController
 
 #pragma mark - setter & getter
-
-- (TipsView *)tipView {
-    if (!_tipView) {
-        //添加提示View
-        _tipView = [[TipsView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, 25)];
-        _tipView.backgroundColor = [UIColor whiteColor];
-        _tipView.layer.borderWidth = 0.5;
-        _tipView.layer.borderColor = [UIColor grayColor].CGColor;
-        Tip *green = [[Tip alloc] initWithTipColor:[UIColor greenColor] andTipDetail:@"<20Min"];
-        Tip *yellow = [[Tip alloc] initWithTipColor:[UIColor yellowColor] andTipDetail:@"20-40Min"];
-        Tip *red = [[Tip alloc] initWithTipColor:[UIColor redColor] andTipDetail:@">40Min"];
-        NSDictionary *dic = @{@(1):green,@(2):yellow,@(3):red};
-        _tipView.tips = dic;
-    }
-    return _tipView;
-}
 
 - (NSMutableString *)map {
     if (!_map) {
@@ -63,9 +45,11 @@
         _seatSelector = [[ZSeatSelector alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.height - 100)];
         [_seatSelector setSeatSize:CGSizeMake(32, 32)];
         [_seatSelector setAvailableImage:[UIImage imageNamed:@"A"]
-                     andUnavailableImage:[UIImage imageNamed:@"U"]
+                        andLongTimeImage:[UIImage imageNamed:@"L"]
+                          andMiddleImage:[UIImage imageNamed:@"M"]
+                       andShortTimeImage:[UIImage imageNamed:@"S"]
                         andDisabledImage:[UIImage imageNamed:@"D"]
-                        andSelectedImage:[UIImage imageNamed:@"S"]];
+                        andSelectedImage:[UIImage imageNamed:@"C"]];
         _seatSelector.seat_delegate = self;
         _seatSelector.selected_seat_limit = 1;
         _seatSelector.backgroundColor = [UIColor clearColor];
@@ -102,7 +86,6 @@
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"colorful"]];
     imageView.frame = CGRectMake((self.view.frame.size.width - 260) / 2.0, (self.view.frame.size.height - 260) / 2.0, 260, 260);
     [self.view addSubview:imageView];
-    [self.view addSubview:self.tipView];
     [self.view addSubview:self.seatSelector];
     [self getSeatsInfoByVenueID];
 }
@@ -166,10 +149,20 @@
     [alertView show];
 }
 
-
 - (void)addSeatToMap:(Seat *)seat {
     if ([seat.isBooked boolValue]) {
-        [self.map appendString:@"U"];
+        NSDateFormatter *dataFormatter = [[NSDateFormatter alloc] init];
+        [dataFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSDate *deadLine = [dataFormatter dateFromString:seat.deadLineTime];
+        float timeInterval = [deadLine timeIntervalSinceNow];
+        NSLog(@"%f",timeInterval);
+        if (timeInterval > 40 * 60) {
+            [self.map appendString:@"L"];
+        } else if (timeInterval < 20 * 60) {
+            [self.map appendString:@"S"];
+        } else {
+            [self.map appendString:@"M"];
+        }
     } else {
         if (self.category) [self.map appendString:@"D"];
         else [self.map appendString:@"A"];
@@ -180,8 +173,7 @@
     int counter = 0;
     for (int i = 1; i <= self.total; ++i) {
         if (i % 8 == 0) {
-            [self.map insertString:@"/" atIndex:i + counter];
-            [self.map insertString:@"/" atIndex:i + counter];
+            [self.map insertString:@"//" atIndex:i + counter];
             counter += 2;
         }
     }

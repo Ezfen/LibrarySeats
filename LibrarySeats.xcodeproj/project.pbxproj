@@ -58,6 +58,7 @@
 		E1DA785F1C311A9500402E3F /* MineFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1DA785E1C311A9500402E3F /* MineFooterView.xib */; settings = {ASSET_TAGS = (); }; };
 		E1DA78641C31616E00402E3F /* BookingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DA78631C31616E00402E3F /* BookingViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E1DDCCF41C2B932100264802 /* LibrarySeatsHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DDCCF31C2B932100264802 /* LibrarySeatsHeaders.m */; settings = {ASSET_TAGS = (); }; };
+		E1DE60491CA6A6D400B2A027 /* VenueSeatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DE60481CA6A6D400B2A027 /* VenueSeatsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E1DF336F1C30C42400C5B9A7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DF336E1C30C42400C5B9A7 /* LoginViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E1E34D341C882D1B00858F76 /* NoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E34D321C882D1B00858F76 /* NoticeDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E1E34D351C882D1B00858F76 /* NoticeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E34D331C882D1B00858F76 /* NoticeDetailViewController.xib */; settings = {ASSET_TAGS = (); }; };
@@ -180,6 +181,8 @@
 		E1DDCCF21C2B932100264802 /* LibrarySeatsHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibrarySeatsHeaders.h; sourceTree = "<group>"; };
 		E1DDCCF31C2B932100264802 /* LibrarySeatsHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibrarySeatsHeaders.m; sourceTree = "<group>"; };
 		E1DDCCF51C2B94CB00264802 /* LibrarySeatsPrefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibrarySeatsPrefix.pch; sourceTree = "<group>"; };
+		E1DE60471CA6A6D400B2A027 /* VenueSeatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueSeatsViewController.h; sourceTree = "<group>"; };
+		E1DE60481CA6A6D400B2A027 /* VenueSeatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueSeatsViewController.m; sourceTree = "<group>"; };
 		E1DF336D1C30C42400C5B9A7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E1DF336E1C30C42400C5B9A7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E1E34D311C882D1B00858F76 /* NoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeDetailViewController.h; sourceTree = "<group>"; };
@@ -307,6 +310,8 @@
 			children = (
 				E12744A41C1BFA8700698286 /* SeatsViewController.h */,
 				E12744A51C1BFA8700698286 /* SeatsViewController.m */,
+				E1DE60471CA6A6D400B2A027 /* VenueSeatsViewController.h */,
+				E1DE60481CA6A6D400B2A027 /* VenueSeatsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -389,13 +394,13 @@
 			name = BaseNetworkHandler;
 			sourceTree = "<group>";
 		};
-		E18681FD1C1AB49E0054EA41 /* Seats */ = {
+		E18681FD1C1AB49E0054EA41 /* Venues */ = {
 			isa = PBXGroup;
 			children = (
 				E14180331C21B34300195B75 /* Controller */,
 				E1B88E4E1C41473A00CE2F2B /* View */,
 			);
-			name = Seats;
+			name = Venues;
 			sourceTree = "<group>";
 		};
 		E18D6D601C82055B00C2BBBD /* StoreContent */ = {
@@ -503,7 +508,8 @@
 				E1DDCCF61C2B9AE500264802 /* Login */,
 				E1CEEBDE1C3ABFE10056089E /* Location */,
 				E1A878861C17CAE200548FC5 /* SignIn */,
-				E18681FD1C1AB49E0054EA41 /* Seats */,
+				E18681FD1C1AB49E0054EA41 /* Venues */,
+				E1DE60461CA6A69700B2A027 /* Seats */,
 				E17F13421C16B5C800B2D0FB /* Notice */,
 				E1DA78651C31617300402E3F /* Booking */,
 				E17F134F1C16D1ED00B2D0FB /* Mine */,
@@ -572,8 +578,6 @@
 		E1DA78661C31619300402E3F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E1BEDBCF1C1D600C0039F642 /* DetailViewController.h */,
-				E1BEDBD01C1D600C0039F642 /* DetailViewController.m */,
 				E1DA78621C31616E00402E3F /* BookingViewController.h */,
 				E1DA78631C31616E00402E3F /* BookingViewController.m */,
 			);
@@ -603,6 +607,15 @@
 				E1DF336E1C30C42400C5B9A7 /* LoginViewController.m */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		E1DE60461CA6A69700B2A027 /* Seats */ = {
+			isa = PBXGroup;
+			children = (
+				E1BEDBCF1C1D600C0039F642 /* DetailViewController.h */,
+				E1BEDBD01C1D600C0039F642 /* DetailViewController.m */,
+			);
+			name = Seats;
 			sourceTree = "<group>";
 		};
 		E1F47CB61C42B15E0081CF45 /* SeatSelector */ = {
@@ -833,6 +846,7 @@
 			files = (
 				E1B5B7AD1C15D59B00CD2981 /* AppDelegate.m in Sources */,
 				E13206311C806344002DE512 /* LibrarySeatsModel.xcdatamodeld in Sources */,
+				E1DE60491CA6A6D400B2A027 /* VenueSeatsViewController.m in Sources */,
 				E1C7624E1C22AE33006977C1 /* WebViewController.m in Sources */,
 				E1B5B7AA1C15D59B00CD2981 /* main.m in Sources */,
 				E1C7624B1C22A438006977C1 /* NoticesViewController.m in Sources */,

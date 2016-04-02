@@ -68,15 +68,23 @@
         char seat_at_position = [map characterAtIndex:i];
         
         if (seat_at_position == 'A') {
-            [self createSeatButtonWithPosition:initial_seat_x and:initial_seat_y isAvailable:YES isDisabled:NO row:row column:column];
+            [self createSeatButtonWithPosition:initial_seat_x and:initial_seat_y isAvailable:YES isDisabled:NO row:row column:column mark:@"A"];
             initial_seat_x += 1;
             column += 1;
         } else if (seat_at_position == 'D') {
-            [self createSeatButtonWithPosition:initial_seat_x and:initial_seat_y isAvailable:YES isDisabled:YES row:row column:column];
+            [self createSeatButtonWithPosition:initial_seat_x and:initial_seat_y isAvailable:YES isDisabled:YES row:row column:column mark:@"D"];
             initial_seat_x += 1;
             column += 1;
-        } else if (seat_at_position == 'U') {
-            [self createSeatButtonWithPosition:initial_seat_x and:initial_seat_y isAvailable:NO isDisabled:NO row:row column:column];
+        } else if (seat_at_position == 'L') {
+            [self createSeatButtonWithPosition:initial_seat_x and:initial_seat_y isAvailable:NO isDisabled:NO row:row column:column mark:@"L"];
+            initial_seat_x += 1;
+            column += 1;
+        } else if (seat_at_position == 'S') {
+            [self createSeatButtonWithPosition:initial_seat_x and:initial_seat_y isAvailable:NO isDisabled:NO row:row column:column mark:@"S"];
+            initial_seat_x += 1;
+            column += 1;
+        } else if (seat_at_position == 'M') {
+            [self createSeatButtonWithPosition:initial_seat_x and:initial_seat_y isAvailable:NO isDisabled:NO row:row column:column mark:@"M"];
             initial_seat_x += 1;
             column += 1;
         } else if(seat_at_position=='_'){
@@ -108,7 +116,7 @@
     [self addSubview:zoomable_view];
     
 }
-- (void)createSeatButtonWithPosition:(int)initial_seat_x and:(int)initial_seat_y isAvailable:(BOOL)available isDisabled:(BOOL)disabled row:(int)row column:(int)column{
+- (void)createSeatButtonWithPosition:(int)initial_seat_x and:(int)initial_seat_y isAvailable:(BOOL)available isDisabled:(BOOL)disabled row:(int)row column:(int)column mark:(NSString *)mark {
     
     ZSeat *seatButton = [[ZSeat alloc]initWithFrame:CGRectMake(initial_seat_x*seat_width, initial_seat_y*seat_height, seat_width, seat_height)];
     if (available && disabled) {
@@ -116,7 +124,13 @@
     } else if (available && !disabled) {
         [self setSeatAsAvaiable:seatButton];
     } else {
-        [self setSeatAsUnavaiable:seatButton];
+        if ([@"S" isEqualToString:mark]) {
+            [self setSeatAsShortTime:seatButton];
+        } else if ([@"M" isEqualToString:mark]) {
+            [self setSeatAsMiddleTime:seatButton];
+        } else {
+            [self setSeatAsLongTime:seatButton];
+        }
     }
     seatButton.tag = initial_seat_x;
     [seatButton setAvailable:available];
@@ -175,14 +189,27 @@
 
 #pragma mark - Seat Images & Availability
 
-- (void)setAvailableImage:(UIImage *)available_image andUnavailableImage:(UIImage *)unavailable_image andDisabledImage:(UIImage *)disabled_image andSelectedImage:(UIImage *)selected_image{
+- (void)setAvailableImage:(UIImage *)available_image andLongTimeImage:(UIImage *)long_time_image andMiddleImage:(UIImage *)middle_time_image andShortTimeImage:(UIImage *)short_time_image andDisabledImage:(UIImage *)disabled_image andSelectedImage:(UIImage *)selected_image {
     self.available_image    = available_image;
-    self.unavailable_image  = unavailable_image;
+    self.long_time_image    = long_time_image;
+    self.short_time_image   = short_time_image;
+    self.middle_time_image  = middle_time_image;
     self.disabled_image     = disabled_image;
     self.selected_image     = selected_image;
 }
-- (void)setSeatAsUnavaiable:(ZSeat*)sender{
-    [sender setImage:self.unavailable_image forState:UIControlStateNormal];
+
+- (void)setSeatAsLongTime:(ZSeat*)sender {
+    [sender setImage:self.long_time_image forState:UIControlStateNormal];
+    [sender addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [sender setSelected_seat:YES];
+}
+- (void)setSeatAsMiddleTime:(ZSeat*)sender {
+    [sender setImage:self.middle_time_image forState:UIControlStateNormal];
+    [sender addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [sender setSelected_seat:YES];
+}
+- (void)setSeatAsShortTime:(ZSeat*)sender {
+    [sender setImage:self.short_time_image forState:UIControlStateNormal];
     [sender addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [sender setSelected_seat:YES];
 }

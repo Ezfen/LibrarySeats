@@ -24,7 +24,9 @@
 }
 
 @property (nonatomic, retain) UIImage *available_image;
-@property (nonatomic, retain) UIImage *unavailable_image;
+@property (nonatomic, retain) UIImage *long_time_image;
+@property (nonatomic, retain) UIImage *middle_time_image;
+@property (nonatomic, retain) UIImage *short_time_image;
 @property (nonatomic, retain) UIImage *disabled_image;
 @property (nonatomic, retain) UIImage *selected_image;
 @property (nonatomic) int selected_seat_limit;
@@ -37,6 +39,6 @@
 -(void)setSeatSize:(CGSize)size;
 -(void)setMap:(NSString*)map;
 
--(void)setAvailableImage:(UIImage*)available_image andUnavailableImage:(UIImage*)unavailable_image andDisabledImage:(UIImage*)disabled_image andSelectedImage:(UIImage*)selected_image;
+-(void)setAvailableImage:(UIImage*)available_image andLongTimeImage:(UIImage*)long_time_image andMiddleImage:(UIImage *)middle_time_image andShortTimeImage:(UIImage *)short_time_image andDisabledImage:(UIImage*)disabled_image andSelectedImage:(UIImage*)selected_image;
 
 @end

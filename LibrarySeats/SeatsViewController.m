@@ -10,9 +10,9 @@
 #import "SeatsViewController.h"
 #import "SeatTableViewCell.h"
 #import "SeatTableHeaderView.h"
-#import "DetailViewController.h"
 #import "NetworkHandler.h"
 #import "PQFCustomLoaders/PQFBouncingBalls.h"
+#import "VenueSeatsViewController.h"
 #import "Venue.h"
 #import "Library.h"
 #import "LibrarySeatsTabBarController.h"
@@ -170,7 +170,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Venue *venue = [self.fetchedRequestController objectAtIndexPath:indexPath];
     if ([venue.totalSeatNum intValue] != 0) {
-        DetailViewController *detail = [[DetailViewController alloc] init];
+        VenueSeatsViewController *detail = [[VenueSeatsViewController alloc] init];
         detail.total = [venue.totalSeatNum intValue];
         detail.venueID = [venue.iD intValue];
         detail.category = YES;
